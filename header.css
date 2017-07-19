@@ -1,0 +1,43 @@
+a
+{
+    text-decoration: none;
+}
+
+.titre
+{
+    font-family:TimeBurner;
+    color:rgb(30,30,30);
+    padding:0px;
+    border-bottom: 2px solid rgb(65, 142, 17);
+    width:150px;
+    margin-bottom:0px;
+}
+
+.titre:hover
+{
+    color:rgb(80, 80, 80);
+    border-color:rgb(222,149,24);
+}
+
+.titles
+{
+    margin-left:20px;
+    width:150px;
+    text-align:center;
+}
+
+.header
+{
+    width:100%;
+    min-width: 1500px;
+    height:100px;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.65) 0%,rgba(255,255,255,0.87) 62%,rgba(211,211,211,1) 100%);
+}
+
+.undertitle
+{
+    font-family: RaphLanok;
+    color:black;
+    margin-top:0px;
+    margin-bottom:10px;
+}

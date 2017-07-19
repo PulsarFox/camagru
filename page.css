@@ -1,0 +1,67 @@
+@font-face
+{
+    font-family: CallingAngels;
+    src:url('fonts/CallingAngels.ttf');
+}
+
+@font-face
+{
+    font-family: RaphLanok;
+    src: url('fonts/RaphLanokFuture.ttf');
+}
+
+@font-face
+{
+    font-family: TimeBurner;
+    src: url('fonts/timeburnerbold.ttf');
+}
+
+body
+{
+    font-family:arial;
+    margin:0;
+}
+
+.presentation_main
+{
+    background-color:#797169;
+    border-width: 2px 0px 2px 0px;
+    border-color:black;
+    border-style: solid;
+    min-width: 1500px;
+}
+
+.presentation_image
+{
+    width:1200px;
+    position:absolute;
+    margin-left:150px;
+    height:864px;
+}
+
+.presentation_image_blur
+{
+    width:1500px;
+    height:864px;
+    filter: blur(15px);
+    position:absolute;
+}
+
+.presentation_image_div
+{
+    width:1500px;
+    margin:auto;
+    height:864px;
+    display:flex;
+    text-align:center;
+}
+
+.presentation_title_text
+{
+    position:relative;
+    z-index:3;
+    font-family:CallingAngels;
+    font-size:150px;
+    color:white;
+    left:400px;
+}
