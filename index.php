@@ -26,13 +26,15 @@
 Curabitur convallis vestibulum enim. Mauris ut magna at sapien faucibus ornare eget id urna. Vestibulum viverra pharetra congue. Etiam eget massa orci. Phasellus id lacinia lorem. Vivamus id eros sagittis massa auctor suscipit ut eu ex. Pellentesque aliquam convallis sem sit amet convallis.</p>
         </div>
         <script>
-            var test = document.getElementById('desc_text');
-            var testscroll;
-            window.addEventListener('scroll', function(){
-                testscroll = document.body.scrollTop;
-                console.log(testscroll);
-                test.style.opacity = (testscroll) / 100;
-            });
+        var test = document.getElementById('desc_text');
+        window.addEventListener('scroll', function(){
+          var scrollTop = document.body.scrollTop;
+          var windowHeight = window.innerHeight;
+          var scrollHeight = document.body.scrollHeight;
+          var scrollPercent = (scrollTop / (scrollHeight - windowHeight)) * 100;
+           test.style.opacity = scrollPercent / 100;
+           console.log(scrollPercent / 100);
+        });
         </script>
     </div>
 </body>
