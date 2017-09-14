@@ -188,3 +188,9 @@ body
     border: 1px solid #888;
     width:80%;
 }
+
+.okimg, .wrongimg
+{
+    width:20px;
+    height:20px;
+}

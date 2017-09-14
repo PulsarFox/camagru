@@ -12,15 +12,17 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("CREATE TABLE IF NOT EXISTS users (
                 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(30) NOT NULL,
-                password TEXT NOT NULL, 
-                email VARCHAR(50) NOT NULL,
-                is_admin BOOL NOT NULL)
+                `username` VARCHAR(30) NOT NULL,
+                `password` TEXT NOT NULL,
+                `email` VARCHAR(50) NOT NULL,
+                `key` TEXT NOT NULL,
+                `is_active` BOOL NOT NULL,
+                `is_admin` BOOL NOT NULL)
                 " );
     $pwd = hash('whirlpool', "root");
     $req = $pdo->query('SELECT username FROM users WHERE username="savincen"');
     if ($req->fetch() == NULL)
-        $pdo->exec("INSERT INTO users values('', 'savincen', '".$pwd."', 'samy.vincentffs@gmail.com', TRUE)");
+        $pdo->exec("INSERT INTO users values('', 'savincen', '".$pwd."', 'samy.vincentffs@gmail.com', 'nokey', TRUE, TRUE)");
 } catch (PDOException $e) {
     die("Table Creation Error: ". $e->getMessage());
 }
