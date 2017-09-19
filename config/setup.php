@@ -11,7 +11,7 @@ try {
     //$pdo->exec("DROP TABLE IF EXISTS users");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("CREATE TABLE IF NOT EXISTS users (
-                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 `username` VARCHAR(30) NOT NULL,
                 `password` TEXT NOT NULL,
                 `email` VARCHAR(50) NOT NULL,
@@ -22,7 +22,7 @@ try {
     $pwd = hash('whirlpool', "root");
     $req = $pdo->query('SELECT username FROM users WHERE username="savincen"');
     if ($req->fetch() == NULL)
-        $pdo->exec("INSERT INTO users values('', 'savincen', '".$pwd."', 'samy.vincentffs@gmail.com', 'nokey', TRUE, TRUE)");
+        $pdo->exec("INSERT INTO users values(NULL, 'savincen', '".$pwd."', 'samy.vintffs@gmail.com', 'nokey', TRUE, TRUE)");
 } catch (PDOException $e) {
     die("Table Creation Error: ". $e->getMessage());
 }

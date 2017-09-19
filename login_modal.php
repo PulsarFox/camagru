@@ -25,7 +25,7 @@
         </div>
         <div class="container">
             <button type="button" onclick="document.getElementById('modal').style.display='none'" class="cancel">Cancel</button>
-            <span class="forgot">Forgot password ?</span>
+            <a class="forgot" href="forgot.php">Forgot password ?</a>
         </div>
     </form>
 </div>
@@ -39,12 +39,6 @@
     }
 </script>
 <?php
-if($_SESSION['login_error'] == "blank_fields")
-    echo "bite";
-else if($_SESSION['login_error'] == "blank_username")
-    echo "chatte";
-else if($_SESSION['login_error'] == "blank_password")
-    echo "cul";
 if($_SESSION['login_error'])
 {
     echo "<script>

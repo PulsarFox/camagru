@@ -41,7 +41,7 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
                 else
                 {
                     $key = md5(uniqid(rand(), true));
-                    $newuser = $db->prepare('INSERT INTO users values("", ?, ?, ?, ?, FALSE,FALSE)');
+                    $newuser = $db->prepare('INSERT INTO users values(NULL, ?, ?, ?, ?, FALSE,FALSE)');
                     $newuser->bindParam(1, $user, PDO::PARAM_STR);
                     $newuser->bindParam(2, $pw, PDO::PARAM_STR);
                     $newuser->bindParam(3, $mail, PDO::PARAM_STR);
@@ -74,7 +74,7 @@ else
     <br />
     <br />
     Pour valider votre inscription, veuillez cliquer sur le lien suivant :<br/>
-    <a href="mail.php?key='.$key.'&user='.htmlspecialchars($user).'">Valider</a></p>
+    <a href="http://localhost:8080/camagru/mail.php?key='.$key.'&user='.htmlspecialchars($user).'">Valider</a></p>
     </body>
     </html>
     ';

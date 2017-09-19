@@ -35,9 +35,8 @@
             $keyvalid->execute();
             if (($tab = $keyvalid->fetch()) != NULL)
             {
-                print_r($tab);
                 if ($tab['is_active'] == TRUE)
-                    echo "account is already activated";
+                    echo "Le compte est dej&agrave; activ&eacute;";
                 else if ($tab['username'] == $_GET['user'])
                 {
                     echo "Compte active";
@@ -49,6 +48,8 @@
                     $_SESSION['username'] = $_GET['user'];
                 }
             }
+            else
+                echo "unknown error";
         } catch(PDOException $e) {
             die("<div class='error'>Select Error : ".$e->getMessage()."</div>");
         }

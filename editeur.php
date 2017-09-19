@@ -17,16 +17,21 @@
     include_once("config/setup.php");
     ?>
     <hr style="margin:0; width:100%;" />
+    <div class="dragzone_images">
+        <img draggable="true" class="drag_image" alt="" src="images/smiley.png" />
+        <img draggable="true" class="drag_image" alt="" src="images/smiley.png" />
+    </div>
     <div class="cam_block">
         <div class="camera">
-            <video id="video">Video stream not available.</video>
-            <button id="startbutton">Take photo</button>
+            <video id="video" class="dropper">Video stream not available.</video>
+            <button class="button_picture" id="startbutton">Take photo</button>
         </div>
         <canvas id="canvas" style="display:none">
         </canvas>
         <div class="output">
-            <img id="photo" alt="The screen capture will appear in this box.">
+            <img id="photo" class="img_output" alt="The screen capture will appear in this box.">
         </div>
     </div>
+    <script type="text/javascript" src="drag_drop.js"></script>
 </body>
 </html>

@@ -22,16 +22,6 @@ function check_valid(type, error)
         else if (type == "confirm_pw")
             conf_pw_valid = 0;
     }
-    if (user_valid == 1 && mail_valid == 1 && pw_valid == 1 && conf_pw_valid == 1)
-    {
-        var button = document.getElementById("submit_button");
-        button.disabled = false;
-    }
-    else
-    {
-        var button = document.getElementById("submit_button");
-        button.disabled = true;
-    }
 }
 
 function display_ok(field, errfield)

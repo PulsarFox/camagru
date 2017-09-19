@@ -7,8 +7,10 @@ include_once("config/database.php");
             <h1 class="titre">Chiabrena</h1>
         </a>
         <?php
-           if ($page == "index")
+            if ($page == "index")
                 $under = "Accueil";
+            else if ($page == "forgot")
+                $under = "Nobrainpage";
             else
                 $under = ucfirst($page);
             echo '<h2 class="undertitle">'.$under.'</h2>';
