@@ -18,11 +18,10 @@
     ?>
     <hr style="margin:0; width:100%;" />
     <div class="dragzone_images">
-        <img draggable="true" class="drag_image" alt="" src="images/smiley.png" />
-        <img draggable="true" class="drag_image" alt="" src="images/smiley.png" />
+        <img draggable="true" class="drag_image" alt="" src="images/smiley.png" id="draggable" />
     </div>
     <div class="cam_block">
-        <div class="camera">
+        <div class="camera" id="drop_zone">
             <video id="video" class="dropper">Video stream not available.</video>
             <button class="button_picture" id="startbutton">Take photo</button>
         </div>

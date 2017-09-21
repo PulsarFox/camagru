@@ -251,4 +251,6 @@ input.oubli_mail
 {
     width:100px;
     height:100px;
+    position:absolute;
+    z-index: 10;
 }
