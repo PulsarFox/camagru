@@ -1,51 +1,3 @@
-/*(function() {
-    var dndHandler = {
-        draggedElement:null,
-
-        applyDragEvents: function(element){
-            element.draggable = true;
-            var dndHandler = this;
-            element.addEventListener('dragstart', function(e){
-                dndHandler.draggedElement = e.target;
-                e.dataTransfer.setData('text/plain', '');
-            });
-        },
-
-        applyDropEvents: function(dropper){
-            dropper.addEventListener('dragover', function(e){
-                e.preventDefault();
-                this.className = 'dropper drop_hover';
-            });
-            dropper.addEventListener('dragleave', function(e){
-                this.className = 'dropper';
-            });
-            var dndHandler = this;
-            dropper.addEventListener('drop', function(e){
-                var target = e.target,
-                    draggedElement = dndHandler.draggedElement,
-                    clonedElement = draggedElement.cloneNode(true);
-                while(target.className.indexOf('dropper') == -1)
-                    target = target.parentNode;
-                target.className = 'dropper';
-                clonedElement = target.appendChild(clonedElement);
-                dndHandler.applyDragEvents(clonedElement);
-                draggedElement.parentNode.removeChild(draggedElement);
-            });
-        }
-    };
-    var elements = document.getElementsByClassName("drag_image");
-    var elementsLen = elements.length;
-    var droppers = document.getElementsByClassName('dropper');
-    var droppersLen = droppers.length;
-    for (var i = 0; i < elementsLen; i++){
-        dndHandler.applyDragEvents(elements[i]);
-    }
-    for (var j = 0; j < droppersLen; j++){
-        dndHandler.applyDropEvents(droppers[j]);
-    }
-})();
-*/
-
 (function(){
     dragDrop = {
         initialMouseX: undefined,
@@ -55,8 +7,9 @@
         draggedObject:undefined,
         
         initElement:function(element) {
-            element = document.getElementById(element);
-            element.onmousedown = dragDrop.startDragMouse;
+            elements = document.getElementsByClassName(element);
+            for (i = 0; i < elements.length; i++)
+                elements[i].onmousedown = dragDrop.startDragMouse;
         },
         startDragMouse: function(e) {
             dragDrop.startDrag(this);
@@ -85,6 +38,14 @@
         setPosition: function(dx, dy) {
             var realX = dragDrop.startX + dx;
             var realY = dragDrop.startY + dy;
+            var drop_zone = document.getElementById("drop_zone");
+            var drop_width = drop_zone.offsetLeft + drop_zone.offsetWidth;
+            var drop_height = drop_zone.offsetTop + drop_zone.offsetHeight;
+
+            if (!(realX <= drop_zone.offsetLeft - 99 || realX >= drop_width - 1 || realY <= drop_zone.offsetTop - 99 || realY >= drop_height - 1))
+                drop_zone.style.border = "2px solid red";
+            else
+                drop_zone.style.border = "";
             if (realX < 0)
                 realX = 0;
             else if (realX > window.innerWidth - 100)
@@ -100,29 +61,11 @@
             dragDrop.draggedObject.style.left = dx + 'px';
             dragDrop.draggedObject.style.top = dy + 'px';
         },
-        releaseElement:function(e){
-            var evt = e || window.event;
-            var dx = dragDrop.draggedObject.offsetLeft;
-            var dy = dragDrop.draggedObject.offsetTop;
-            //alert(dx + " " + dy);
-            var dropWin = document.getElementById("drop_zone");
-            var offX = dropWin.offsetLeft;
-            var offY = dropWin.offsetTop;
-            var x = dropWin.offsetLeft + dropWin.offsetWidth;
-            var y = dropWin.offsetTop + dropWin.offsetHeight;
-
-            if (dx <= offX - 99)
-                dx = offX - 99;
-            else if (dx >= x - 1)
-                dx = x - 1;
-            if (dy <= offY - 99)
-                dy = offY - 99;
-            else if (dy >= y - 1)
-                dy = y - 1;
-            dragDrop.setRulesPosition(dx, dy);
+        releaseElement:function(){
+            deleteOverflow();
             removeEventSimple(document, 'mousemove', dragDrop.dragMouse);
             removeEventSimple(document, 'mouseup', dragDrop.releaseElement);
-            dragDrop.draggedObject.className = dragDrop.draggedObject.className.replace(/dragged/, '');
+            dragDrop.draggedObject.className = dragDrop.draggedObject.className.replace(/.dragged/, '');
             dragDrop.draggedObject = null;
         }
     }
@@ -142,12 +85,38 @@
         else
             alert("Error detach evenements");
     }
+    function deleteOverflow()
+    {
+        var clippers = document.getElementsByClassName("clipper");
+        var clone = document.getElementsByClassName("clone");
+        var drop_zone = document.getElementById("drop_zone");
+        var drop_width = drop_zone.offsetLeft + drop_zone.offsetWidth;
+        var drop_height = drop_zone.offsetTop + drop_zone.offsetHeight;
+        console.log("delete ALL");
+
+        for (i = 0; i < clone.length; i++){
+            if (clone[i].offsetLeft <= drop_zone.offsetLeft - 99 || clone[i].offsetLeft >= drop_width - 1 || clone[i].offsetTop <= drop_zone.offsetTop - 99 || clone[i].offsetTop >= drop_height - 1)
+                clone[i].remove();
+        }
+        for (i = 0; i < clone.length; i++){
+            if (clone[i].offsetLeft <= drop_zone.offsetLeft - 99 || clone[i].offsetLeft >= drop_width - 1 || clone[i].offsetTop <= drop_zone.offsetTop - 99 || clone[i].offsetTop >= drop_height - 1)
+                clone[i].remove();
+        }
+        for (i = 0; i < clippers.length; i++)
+            cloneElement(clippers[i]);
+    }
     function cloneElement(e){
         var clone = e.cloneNode(true);
+        clone.className = "clone";
+        clone.removeAttribute("id");
+        clone.setAttribute("draggable", "true");
         e.parentNode.appendChild(clone);
+        dragDrop.initElement('clone');
     }
-    dragDrop.initElement('draggable');
-    var img = document.getElementById("draggable");
-    img.addEventListener('click', cloneElement(img), false);
+    window.addEventListener('load', function(){
+        var images = document.getElementsByClassName("clipper");
+        for (i = 0; i < images.length; i++)
+            cloneElement(images[i]);
+    }, false);
 })();
 

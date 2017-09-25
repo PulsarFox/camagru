@@ -18,7 +18,7 @@
     ?>
     <hr style="margin:0; width:100%;" />
     <div class="dragzone_images">
-        <img draggable="true" class="drag_image" alt="" src="images/smiley.png" id="draggable" />
+        <img class="clipper" alt="" src="images/smiley.png" id="smiley" />
     </div>
     <div class="cam_block">
         <div class="camera" id="drop_zone">

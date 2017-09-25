@@ -247,10 +247,19 @@ input.oubli_mail
     margin-top:10px;
 }
 
-.drag_image
+.clipper, .clone
 {
     width:100px;
     height:100px;
     position:absolute;
-    z-index: 10;
+}
+
+.clipper
+{
+    z-index: 4;
+}
+
+.clone
+{
+    z-index: 5;
 }
