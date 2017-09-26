@@ -254,6 +254,11 @@ input.oubli_mail
     position:absolute;
 }
 
+.beer
+{
+    left: 150px;
+}
+
 .clipper
 {
     z-index: 4;

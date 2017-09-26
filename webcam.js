@@ -15,7 +15,8 @@
 
         navigator.mediaDevices.getUserMedia({video: true, audio: false})
         .then(function(stream){
-            if ("srcObject" in video) {
+            if
+                ("srcObject" in video) {
                 video.srcObject = stream;
             }
             else {
@@ -48,7 +49,6 @@
         }, false);
         clearphoto();
     }
-    
     function clearphoto(){
         var context = canvas.getContext('2d');
         context.fillStyle = "#000";
@@ -57,7 +57,7 @@
         photo.setAttribute('src', data);
     }
 
-    function takepicture() {
+    function takepicture() {/*
         var context = canvas.getContext('2d');
         if (width && height) {
             canvas.width = width;
@@ -65,6 +65,36 @@
             context.drawImage(video, 0, 0, width, height);
             var data = canvas.toDataURL('image/png');
             photo.setAttribute('src', data);
+        }
+        else
+            clearphoto();*/
+        var xhr = new XMLHttpRequest;
+        var context = canvas.getContext("2d");
+        if (width && height)
+        {
+            canvas.width = width;
+            canvas.height = height;
+            context.drawImage(video, 0, 0, width, height);
+            var dataUrl = canvas.toDataURL('image/png');
+            xhr.addEventListener('readystatechange', function() {
+                if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0))
+                {
+                    console.log(xhr.responseText);
+                    photo.setAttribute('src', xhr.responseText);
+                }
+            });
+            var clippers = document.getElementsByClassName('ondropzone');
+            var dataphrase = "video=" + encodeURIComponent(dataUrl) + "&video_x=" + video.offsetLeft + "&video_y=" + video.offsetTop + "&video_width=" + video.offsetWidth + "&video_height=" + video.offsetHeight; 
+            for (i = 0; i < clippers.length; i++)
+            {
+                dataphrase += "&image" + i + "_x=" + clippers[i].offsetLeft;
+                dataphrase += "&image" + i + "_y=" + clippers[i].offsetTop;
+                dataphrase += "&image" + i + "=" + clippers[i].src;
+
+            }
+            xhr.open("POST", "webcam.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send(dataphrase);
         }
         else
             clearphoto();

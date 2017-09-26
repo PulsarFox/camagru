@@ -7,9 +7,14 @@
         draggedObject:undefined,
         
         initElement:function(element) {
-            elements = document.getElementsByClassName(element);
-            for (i = 0; i < elements.length; i++)
+            var i = 0;
+            elements = document.getElementsByClassName('clone');
+            elements[0].onmousedown = dragDrop.startDragMouse;
+            while(elements[i])
+            {
                 elements[i].onmousedown = dragDrop.startDragMouse;
+                i++;
+            }
         },
         startDragMouse: function(e) {
             dragDrop.startDrag(this);
@@ -26,7 +31,7 @@
             dragDrop.startX = obj.offsetLeft;
             dragDrop.startY = obj.offsetTop;
             dragDrop.draggedObject = obj;
-            obj.className += ' dragged';
+            obj.className = 'clone dragged';
         },
         dragMouse: function(e) {
             var evt = e || window.event;
@@ -41,19 +46,26 @@
             var drop_zone = document.getElementById("drop_zone");
             var drop_width = drop_zone.offsetLeft + drop_zone.offsetWidth;
             var drop_height = drop_zone.offsetTop + drop_zone.offsetHeight;
+            var scrolltop;
+            var scrollleft;
+
+            if (!(scrolltop = document.body.scrollTop))
+                scrolltop = document.documentElement.scrollTop;
+            if (!(scrollleft = document.body.scrollLeft))
+                scrollleft = document.documentElement.scrollLeft;
 
             if (!(realX <= drop_zone.offsetLeft - 99 || realX >= drop_width - 1 || realY <= drop_zone.offsetTop - 99 || realY >= drop_height - 1))
                 drop_zone.style.border = "2px solid red";
             else
                 drop_zone.style.border = "";
-            if (realX < 0)
-                realX = 0;
-            else if (realX > window.innerWidth - 100)
-                realX = window.innerWidth - 100;
-            if (realY < 0)
-                realY = 0;
-            else if (realY > window.innerHeight - 100)
-                realY = window.innerHeight - 100;
+            if (realX < 0 + scrollleft)
+                realX = 0 + scrollleft;
+            else if (realX > window.innerWidth - 100 + scrollleft)
+                realX = window.innerWidth - 100 + scrollleft;
+            if (realY < 0 + scrolltop)
+                realY = 0 + scrolltop;
+            else if (realY > window.innerHeight - 100 + scrolltop)
+                realY = window.innerHeight - 100 + scrolltop;
             dragDrop.draggedObject.style.left = realX + 'px';
             dragDrop.draggedObject.style.top = realY + 'px';
         },
@@ -65,7 +77,7 @@
             deleteOverflow();
             removeEventSimple(document, 'mousemove', dragDrop.dragMouse);
             removeEventSimple(document, 'mouseup', dragDrop.releaseElement);
-            dragDrop.draggedObject.className = dragDrop.draggedObject.className.replace(/.dragged/, '');
+            dragDrop.draggedObject.className = "clone ondropzone";
             dragDrop.draggedObject = null;
         }
     }
@@ -117,6 +129,7 @@
         var images = document.getElementsByClassName("clipper");
         for (i = 0; i < images.length; i++)
             cloneElement(images[i]);
+        
     }, false);
 })();
 

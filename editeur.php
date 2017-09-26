@@ -18,7 +18,8 @@
     ?>
     <hr style="margin:0; width:100%;" />
     <div class="dragzone_images">
-        <img class="clipper" alt="" src="images/smiley.png" id="smiley" />
+        <img class="clipper smiley" alt="" src="images/smiley.png" id="smiley" />
+        <img class="clipper beer" alt="" src="images/beer.png" id="smiley" style="left:150px;" />
     </div>
     <div class="cam_block">
         <div class="camera" id="drop_zone">
