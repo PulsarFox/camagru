@@ -1,10 +1,8 @@
 <?php
 if ($_POST['video'])
 {
-    $string = null;
-    //$video_image = imagecreatefromstring($_POST['video']);
-    $test = array_filter(explode(',', $_POST['video']), 'strlen');
-    $video_image = imagecreatefromstring(base64_decode($test[1]));
+    $tmp = array_filter(explode(',', $_POST['video']), 'strlen');
+    $video_image = imagecreatefromstring(base64_decode($tmp[1]));
     
     $x = $_POST['video_x'];
     $y = $_POST['video_y'];
@@ -27,9 +25,6 @@ if ($_POST['video'])
             }
         }
     }
-    $image = imagecreatefrompng($_POST['image0']);
-    $size = getimagesize($_POST['image0']);
-    imagecopyresampled($video_image, $image, $x_image, $y_image, 0, 0, 100, 100, $size[0], $size[1]);
     ob_start();
         imagepng($video_image);
         $content = ob_get_contents();

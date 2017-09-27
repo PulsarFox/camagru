@@ -19,6 +19,12 @@ try {
                 `is_active` BOOL NOT NULL,
                 `is_admin` BOOL NOT NULL)
                 " );
+    $pdo->exec("CREATE TABLE IF NOT EXISTS images (
+                `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                `username` VARCHAR(30) NOT NULL,
+                `src` TEXT NOT NULL,
+                `time` DATETIME NOT NULL,
+                `comment` TEXT)");
     $pwd = hash('whirlpool', "root");
     $req = $pdo->query('SELECT username FROM users WHERE username="savincen"');
     if ($req->fetch() == NULL)

@@ -24,13 +24,15 @@
     <div class="cam_block">
         <div class="camera" id="drop_zone">
             <video id="video" class="dropper">Video stream not available.</video>
-            <button class="button_picture" id="startbutton">Take photo</button>
         </div>
+        <button class="button_picture" id="startbutton">Take photo</button>
         <canvas id="canvas" style="display:none">
         </canvas>
         <div class="output">
             <img id="photo" class="img_output" alt="The screen capture will appear in this box.">
         </div>
+        <br/><button class="save_button" id="savebutton">Save Photo</button><br />
+        <span id="err_save"></span>
     </div>
     <script type="text/javascript" src="drag_drop.js"></script>
 </body>

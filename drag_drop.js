@@ -9,7 +9,6 @@
         initElement:function(element) {
             var i = 0;
             elements = document.getElementsByClassName('clone');
-            elements[0].onmousedown = dragDrop.startDragMouse;
             while(elements[i])
             {
                 elements[i].onmousedown = dragDrop.startDragMouse;
@@ -129,7 +128,6 @@
         var images = document.getElementsByClassName("clipper");
         for (i = 0; i < images.length; i++)
             cloneElement(images[i]);
-        
     }, false);
 })();
 
