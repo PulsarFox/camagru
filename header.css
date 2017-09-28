@@ -66,7 +66,7 @@ a
     color:black;
     margin:5px;
     position:relative;
-    top:10px;
+    top: 4px;
     font-size:23px;
     font-family:TimeBurner;
 }
@@ -104,4 +104,25 @@ a
 .menu_title:hover:after
 {
     width:100%;
+}
+
+.line 
+{
+    background-color:#FFF;
+    position:relative;
+    padding:5px;
+    top:-8px;
+}
+
+.hello_world
+{
+    padding:2px;
+    margin:0 auto;
+    display:block;
+    width:95%;
+    position:relative;
+    bottom:3px;
+    border-radius:50%;
+    height:2px;
+    background-color:black;
 }

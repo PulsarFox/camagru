@@ -9,6 +9,7 @@ try {
 try {
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
     //$pdo->exec("DROP TABLE IF EXISTS users");
+    //$pdo->exec("DROP TABLE IF EXISTS images");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("CREATE TABLE IF NOT EXISTS users (
                 `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -22,8 +23,8 @@ try {
     $pdo->exec("CREATE TABLE IF NOT EXISTS images (
                 `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 `username` VARCHAR(30) NOT NULL,
-                `src` TEXT NOT NULL,
-                `time` DATETIME NOT NULL,
+                `src` VARCHAR(1000) NOT NULL,
+                `time` VARCHAR(30) NOT NULL,
                 `comment` TEXT)");
     $pwd = hash('whirlpool', "root");
     $req = $pdo->query('SELECT username FROM users WHERE username="savincen"');

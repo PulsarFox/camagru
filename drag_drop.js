@@ -103,7 +103,6 @@
         var drop_zone = document.getElementById("drop_zone");
         var drop_width = drop_zone.offsetLeft + drop_zone.offsetWidth;
         var drop_height = drop_zone.offsetTop + drop_zone.offsetHeight;
-        console.log("delete ALL");
 
         for (i = 0; i < clone.length; i++){
             if (clone[i].offsetLeft <= drop_zone.offsetLeft - 99 || clone[i].offsetLeft >= drop_width - 1 || clone[i].offsetTop <= drop_zone.offsetTop - 99 || clone[i].offsetTop >= drop_height - 1)

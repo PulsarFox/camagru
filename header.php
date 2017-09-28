@@ -17,17 +17,27 @@ include_once("config/database.php");
         ?>
     </div>
     <div class="menu">
+        <?php
+            if ($_SESSION['connected'] && $_SESSION['username'])
+            {
+                //echo '<p class="hello_world"><span class="line">Connect&eacute; en tant que '.htmlspecialchars($_SESSION['username']).'</span></p>';
+                echo '<p class="hello_world"><span class="line">'.htmlspecialchars($_SESSION['username']).' - <a href="disconnect.php">Se d&eacute;connecter</a></span></p>';
+            }
+            else
+                echo '<div class="menu_title_block" style="position:relative; top:6px;">';
+        ?>
+        
         <a class="menu_title home" href="index.php">Accueil</a>
-        <span class="test"></span>
-        <a class="menu_title editor" href="editeur.php">Editeur</a>
         <a class="menu_title gallerie" href="gallerie.php">Gallerie</a>
         <?php
             if ($_SESSION['connected'])
-                echo '<a class="menu_title myaccount" href="disconnect.php">'.htmlspecialchars($_SESSION['username']).'</a>';
+                echo '<a class="menu_title editor" href="editeur.php">Editeur</a>
+                <a class="menu_title myaccount" href="">Mon Compte</a>';
             else
                 echo '<a class="menu_title login" onclick="document.getElementById(\'modal\').style.display=\'block\';document.getElementById(\'username_field\').focus();" href="#">Log in</a>
-                    <a class="menu_title signup" href="inscription.php">Sign up</a>';
+                    <a class="menu_title signup" href="inscription.php">Sign up</a></div>';
         ?>
+        
     </div>
 <?php
 if (!$_SESSION['connected'])
