@@ -22,8 +22,22 @@
     ?>
     <hr style="margin:0; width:100%;" />
     <div class="dragzone_images">
-        <img class="clipper smiley" alt="" src="images/smiley.png" id="smiley" />
-        <img class="clipper beer" alt="" src="images/beer.png" id="smiley" style="left:150px;" />
+    <?php
+        try {
+            $i = 0;
+            $left = 0;
+            $query = $pdo->query("SELECT name, src FROM clippers");
+            $clipper = $query->fetchAll();
+            while ($clipper[$i])
+            {
+                echo '<img class="clipper '.$clipper[$i]["name"].' alt="" src="'.$clipper[$i]["src"].'" id="'.$clipper[$i]["name"].'" style="left: '.$left.'px;" />';
+                $i++;
+                $left = $left + 120;
+            }
+        } catch(PDOException $e) {
+            die("Error");
+        }
+    ?>
     </div>
     <div class="central_block">
     <div class="cam_block">

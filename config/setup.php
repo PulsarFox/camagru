@@ -10,6 +10,7 @@ try {
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
     //$pdo->exec("DROP TABLE IF EXISTS users");
     //$pdo->exec("DROP TABLE IF EXISTS images");
+    //$pdo->exec("DROP TABLE IF EXISTS clippers");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("CREATE TABLE IF NOT EXISTS users (
                 `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -25,11 +26,30 @@ try {
                 `username` VARCHAR(30) NOT NULL,
                 `src` VARCHAR(1000) NOT NULL,
                 `time` VARCHAR(30) NOT NULL,
-                `comment` TEXT)");
+                `likes` INT(8))");
+    $pdo->exec("CREATE TABLE IF NOT EXISTS clippers (
+        `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        `name` VARCHAR(30) NOT NULL,
+        `src` VARCHAR(1000) NOT NULL)");
+    $pdo->exec("CREATE TABLE IF NOT EXISTS comments (
+        `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        `username` VARCHAR(30) NOT NULL,
+        `comment` VARCHAR(500) NOT NULL,
+        `timedate` VARCHAR(30) NOT NULL)");
     $pwd = hash('whirlpool', "root");
-    $req = $pdo->query('SELECT username FROM users WHERE username="savincen"');
-    if ($req->fetch() == NULL)
+    $req_username = $pdo->query('SELECT username FROM users WHERE username="savincen"');
+    if ($req_username->fetch() == NULL)
         $pdo->exec("INSERT INTO users values(NULL, 'savincen', '".$pwd."', 'samy.vintffs@gmail.com', 'nokey', TRUE, TRUE)");
+    $req_clippers = $pdo->query('SELECT id FROM clippers');
+    if ($req_clippers->fetchAll() == NULL)
+    {
+        $pdo->exec("INSERT INTO clippers values
+        (null, 'smiley', 'images/clippers/smiley.png'),
+        (null, 'beer', 'images/clippers/beer.png'),
+        (null, 'chapeau', 'images/clippers/chapeau.png'),
+        (null, 'moustache', 'images/clippers/moustache.png'),
+        (null, 'censored', 'images/clippers/censored.png')");
+    }
 } catch (PDOException $e) {
     die("Table Creation Error: ". $e->getMessage());
 }

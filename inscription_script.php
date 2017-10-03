@@ -74,7 +74,7 @@ else
     <br />
     <br />
     Pour valider votre inscription, veuillez cliquer sur le lien suivant :<br/>
-    <a href="http://localhost:8080/camagru/mail.php?key='.$key.'&user='.htmlspecialchars($user).'">Valider</a></p>
+    <a href="http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].'/camagru/mail.php?key='.$key.'&user='.htmlspecialchars($user).'">Valider</a></p>
     </body>
     </html>
     ';

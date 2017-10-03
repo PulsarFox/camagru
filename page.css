@@ -306,3 +306,53 @@ input.oubli_mail
     margin:5px;
     padding:0;
 }
+
+#galerie_block
+{
+    overflow-y: scroll;
+}
+
+#footer
+{
+    width:99.60%;
+    height:100px;
+    border: 3px solid black;
+    background-color: lightgrey;
+    display:inline-flex;
+    position:absolute;
+    bottom:0px;
+}
+
+.footer_picture
+{
+    width:100px;
+    margin: 0 auto;
+    background-color: gray;
+}
+
+.block_pic
+{
+    margin:0 auto;
+    width:600px;
+    text-align:center;
+}
+
+.photo
+{
+    width:360px;
+    height:284px;
+    border-radius:3px;
+    margin: 0 auto;
+}
+
+.photo:hover
+{
+    box-shadow: inset 0px 0px 20px 0px black;
+}
+
+.pic_perso
+{
+    margin:20px;
+    position:relative;
+    top:2px;
+}

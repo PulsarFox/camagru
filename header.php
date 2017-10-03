@@ -1,7 +1,7 @@
 <?php
 include_once("config/database.php");
 ?>
-<div class="header">
+<div id="header">
     <div class="titles">
         <a href="index.php" class="link_homepage">
             <h1 class="titre">Chiabrena</h1>
