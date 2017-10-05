@@ -1,0 +1,409 @@
+@font-face
+{
+    font-family: CallingAngels;
+    src:url('../fonts/CallingAngels.ttf');
+}
+
+@font-face
+{
+    font-family: RaphLanok;
+    src: url('../fonts/RaphLanokFuture.ttf');
+}
+
+@font-face
+{
+    font-family: TimeBurner;
+    src: url('../fonts/timeburnerbold.ttf');
+}
+
+body
+{
+    font-family:arial;
+    margin:0;
+    overflow-x:hidden;
+}
+
+.presentation_main
+{
+    background-color:#797169;
+    border-width: 2px 0px 2px 0px;
+    border-color:black;
+    border-style: solid;
+    min-width: 1500px;
+}
+
+.presentation_image
+{
+    width:1200px;
+    position:absolute;
+    margin-left:150px;
+    height:864px;
+}
+
+.presentation_image_blur
+{
+    width:1500px;
+    height:864px;
+    filter: blur(15px);
+    position:absolute;
+}
+
+.presentation_image_div
+{
+    width:1500px;
+    margin:auto;
+    height:864px;
+    display:flex;
+    text-align:center;
+}
+
+.presentation_title_text
+{
+    position:relative;
+    z-index:3;
+    font-family:CallingAngels;
+    font-size:150px;
+    text-shadow: 0px 0px 7px #fffde3;
+    color:white;
+    left:460px;
+}
+
+.description_text
+{
+    position:relative;
+    opacity:0;
+    font-family: CallingAngels;
+    font-size: 55px;
+    z-index: 1;
+    color: white;
+    right: 300px;
+    text-shadow: 0px 0px 7px black;
+    top: 437px;
+}
+
+.bloc_presentation
+{
+    width:100%;
+    height:500px;
+    text-align: center;
+}
+
+.bloc_presentation_title
+{
+    position: relative;
+    bottom:150px;
+    font-size:3em;
+}
+
+.login_bloc
+{
+    width:500px;
+    height:500px;
+    margin: 0 auto;
+    margin-top:100px;
+    border: 2px solid black;
+}
+
+.form_inscription
+{
+    margin:0 auto;
+    margin-top:50px;
+    width:700px;
+    height:800px;
+}
+
+.title_inscription
+{
+    font-family:RaphLanok;
+    margin: 0 auto;
+}
+
+.inscription
+{
+    margin-top:5px;
+}
+
+.errmsg
+{
+    color:black;
+    font-style:italic;
+    font-size: 0.8em;
+    text-shadow: 0px 0px 3px red;
+}
+
+.container
+{
+    padding:16px;
+}
+
+.modal_style {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 4; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.input
+{
+    width:100%;
+    padding:12px 20px;
+    margin-top: 10px;
+
+    display:inline-block;
+    box-sizing:border-box;
+}
+
+.ok
+{
+    border:1px solid #068405;
+}
+
+.wrong
+{
+    border:1px solid red;
+}
+
+.username
+{
+    margin-top:30px;
+}
+
+.passwd
+{
+    margin-top:20px;
+    margin-bottom:10px;
+}
+
+.loginform
+{
+    background-color:#fefefe;
+    margin:5% auto 15% auto;
+    border: 1px solid #888;
+    width:80%;
+}
+
+.okimg, .wrongimg
+{
+    width:20px;
+    height:20px;
+}
+
+.bloc_oubli
+{
+    width: 500px;
+    height:200px;
+    margin: 0 auto;
+    text-align:center;
+    margin-top:100px;
+    border: 2px solid black;
+    border-radius: 0.2em;
+}
+
+input.oubli_mail
+{
+    width:200px;
+}
+
+.cam_block
+{
+    width: 350px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.dragzone_images
+{
+    width:100%;
+    height:100px;
+    background-color: #E8E8E8;
+}
+
+.camera, .canvas, .output, .img_output
+{
+    width:320px;
+    height:240px;
+    display:inline-block;
+}
+
+.camera
+{
+    margin-top:20px;
+}
+
+.output
+{
+    margin-top: 45px;
+}
+
+.button_picture
+{
+    margin-top:10px;
+}
+
+.clipper, .clone
+{
+    width:100px;
+    height:100px;
+    position:absolute;
+}
+
+.beer
+{
+    left: 150px;
+}
+
+.clipper
+{
+    z-index: 4;
+}
+
+.clone
+{
+    z-index: 5;
+}
+
+.central_block
+{
+    display:flex;
+}
+
+.preview_block
+{
+    width:300px;
+    height:500px;
+    margin-top:20px;
+    margin-right:5px;
+    clear:both;
+    float:left;
+}
+
+.title_preview_block
+{
+    width: 100%;
+    height: 50px;
+    padding-top:10px;
+    text-align:center;
+    border: 2px solid red;
+}
+
+.image_preview_block
+{
+    width:100%;
+    height:100%;
+    border:2px solid black;
+    overflow-x: scroll;
+}
+
+.all_or_own
+{
+    margin:5px;
+    padding:0;
+}
+
+#galerie_block
+{
+    overflow-y: scroll;
+}
+
+#footer
+{
+    width:99.60%;
+    height:100px;
+    border: 3px solid black;
+    background-color: lightgrey;
+    display:inline-flex;
+    position:absolute;
+    bottom:0px;
+}
+
+.footer_picture
+{
+    width:100px;
+    margin: 0 auto;
+    background-color: gray;
+}
+
+.block_pic
+{
+    margin:0 auto;
+    width:80%;
+    text-align:center;
+    border-bottom:3px solid;
+}
+
+.photo
+{
+    width:360px;
+    height:310px;
+    border-radius:3px;
+    box-shadow: inset 0px 0px 20px 0px black;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.pic_perso
+{
+    margin:20px;
+    position:relative;
+    border:2px solid black;
+    top:0px;
+    margin-bottom:0px;
+    right:2px;
+}
+
+.pic_perso:hover
+{
+    border: 2px dashed black;
+}
+
+.pic_username
+{
+    margin-top:0px;
+    font-family: RaphLanok;
+    font-size:25px;
+}
+
+.like_dislike
+{
+    display:inline-flex;
+}
+
+.nb_like
+{
+    margin:20px;
+}
+
+.like_img, .dislike_img
+{
+    padding:2px;
+}
+
+.dislike_img:hover
+{
+    padding:0px;
+    border:2px dashed red;
+    cursor:pointer;
+    cursor:hand;
+}
+
+.like_img:hover
+{
+    padding:0px;
+    border:2px dashed green;
+    cursor:pointer;
+    cursor:hand;
+}
+
+.del
+{
+    position:relative;
+    bottom:67px;
+    left:148px;
+}

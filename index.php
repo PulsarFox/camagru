@@ -5,8 +5,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="page.css" />
-    <link rel="stylesheet" type="text/css" href="header.css" />
+    <link rel="stylesheet" type="text/css" href="style/page.css" />
+    <link rel="stylesheet" type="text/css" href="style/header.css" />
     <title>Chiabrena</title>
 </head>
 <body>

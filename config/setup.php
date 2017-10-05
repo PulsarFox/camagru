@@ -11,6 +11,8 @@ try {
     //$pdo->exec("DROP TABLE IF EXISTS users");
     //$pdo->exec("DROP TABLE IF EXISTS images");
     //$pdo->exec("DROP TABLE IF EXISTS clippers");
+    //$pdo->exec("DROP TABLE IF EXISTS comments");
+    //$pdo->exec("DROP TABLE IF EXISTS likes_log");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("CREATE TABLE IF NOT EXISTS users (
                 `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -33,9 +35,15 @@ try {
         `src` VARCHAR(1000) NOT NULL)");
     $pdo->exec("CREATE TABLE IF NOT EXISTS comments (
         `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        `id_image` INT(6) NOT NULL,
         `username` VARCHAR(30) NOT NULL,
         `comment` VARCHAR(500) NOT NULL,
-        `timedate` VARCHAR(30) NOT NULL)");
+        `timedate` INT(11) UNSIGNED NOT NULL)");
+    $pdo->exec("CREATE TABLE IF NOT EXISTS likes_log (
+        `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        `username` VARCHAR(30) NOT NULL,
+        `id_image` INT(6) NOT NULL,
+        `vote` INT(6) NOT NULL)");
     $pwd = hash('whirlpool', "root");
     $req_username = $pdo->query('SELECT username FROM users WHERE username="savincen"');
     if ($req_username->fetch() == NULL)

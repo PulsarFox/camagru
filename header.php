@@ -21,14 +21,14 @@ include_once("config/database.php");
             if ($_SESSION['connected'] && $_SESSION['username'])
             {
                 //echo '<p class="hello_world"><span class="line">Connect&eacute; en tant que '.htmlspecialchars($_SESSION['username']).'</span></p>';
-                echo '<p class="hello_world"><span class="line">'.htmlspecialchars($_SESSION['username']).' - <a href="disconnect.php">Se d&eacute;connecter</a></span></p>';
+                echo '<p class="hello_world"><span class="line">'.htmlspecialchars($_SESSION['username']).' - <a href="PHPscripts/disconnect.php">Se d&eacute;connecter</a></span></p>';
             }
             else
                 echo '<div class="menu_title_block" style="position:relative; top:6px;">';
         ?>
         
         <a class="menu_title home" href="index.php">Accueil</a>
-        <a class="menu_title gallerie" href="gallerie.php">Gallerie</a>
+        <a class="menu_title gallerie" href="galerie.php">Galerie</a>
         <?php
             if ($_SESSION['connected'])
                 echo '<a class="menu_title editor" href="editeur.php">Editeur</a>
@@ -41,6 +41,6 @@ include_once("config/database.php");
     </div>
 <?php
 if (!$_SESSION['connected'])
-    include_once("login_modal.php");
+    include_once("PHPscripts/login_modal.php");
 ?>
 </div>

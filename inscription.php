@@ -5,9 +5,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="page.css" />
-    <link rel="stylesheet" type="text/css" href="header.css" />
-    <script type="text/javascript" src="inscription_script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/page.css" />
+    <link rel="stylesheet" type="text/css" href="style/header.css" />
+    <script type="text/javascript" src="scripts/inscription_script.js"></script>
     <title>Chiabrena</title>
 </head>
 <body>
@@ -20,7 +20,7 @@ include_once("header.php");
     <div class="form_inscription">
         <fieldset>
         <legend><h1 class="title_inscription">Chiabrena-inscription</h1></legend>
-        <form action="inscription_script.php" method="post" onSubmit="return valid()">
+        <form action="PHPscripts/inscription_script.php" method="post" onSubmit="return valid()">
             <div class="inscription">
                 Nom d'utilisateur: <input id="user" type="text" name="username" onkeyup="existsblur('user')"><span id="user_error"></span>
             <br/>

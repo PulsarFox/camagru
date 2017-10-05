@@ -9,9 +9,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="page.css" />
-    <link rel="stylesheet" type="text/css" href="header.css" />
-    <script type="text/javascript" src="webcam.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/page.css" />
+    <link rel="stylesheet" type="text/css" href="style/header.css" />
+    <script type="text/javascript" src="scripts/webcam.js"></script>
     <title>Chiabrena</title>
 </head>
 <body>
@@ -62,7 +62,7 @@
         </div>
     </div>
     </div>
-    <script type="text/javascript" src="preview_pict.js"></script>
-    <script type="text/javascript" src="drag_drop.js"></script>
+    <script type="text/javascript" src="scripts/preview_pict.js"></script>
+    <script type="text/javascript" src="scripts/drag_drop.js"></script>
 </body>
 </html>
