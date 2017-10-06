@@ -47,7 +47,7 @@
         .catch (function(e)
         {
             is_video = false;
-            if (e.name == "NotAllowedError" || e.name == "NotFoundError")
+            if (e.name == "NotAllowedError" || e.name == "NotFoundError" || e.name == "PermissionDeniedError")
                 get_image_from_pc();
             else
             {
@@ -91,24 +91,43 @@
 
     function get_image_from_pc()
     {
+        var error = 0;
         cam.setAttribute('width', 320);
         cam.setAttribute('height', 240);
-        cam.innerHTML = "<input type=\"file\" id=\"my_input_file\" autocomplete=\"off\" name=\"my_image\" accept=\"image/*\" /> <br /><button id=\"send_button\">Envoyer</button>";
+        cam.innerHTML = "<input type=\"file\" id=\"my_input_file\" autocomplete=\"off\" name=\"my_image\" accept=\"image/*\" /> <br /><button id=\"send_button\">Envoyer</button> <span id=\"pouet\"></span>";
         var input_field = document.getElementById("my_input_file");
         var send_button = document.getElementById("send_button");
         send_button.addEventListener('click', function(){
+            var pouet = document.getElementById("pouet");
             var filz = input_field.files;
             if (filz.length === 0)
-                cam.innerHTML += "<br/>No file selected";
-            else
             {
+                pouet.innerHTML = "<br/>No file selected";
+            }
+            else if(filz[0])
+            {
+                
                 if (filz[0].size > 2097152)
-                    cam.innerHTML += "<br/>Fichier trop volumineux";
-                else {
-                    var string = window.URL.createObjectURL(filz[0]);
-                    cam.innerHTML = "<img style=\"width:320px; height:240px;\" id=\"my_image\"src=\""+string+"\" alt=\"\" />";
+                    pouet.innerHTML = "<br/>Fichier trop volumineux";
+                else
+                {
+                    var URL = window.URL || window.webkitURL;
+                    var test_img = new Image();
+                    test_img.src = URL.createObjectURL(filz[0]);
+                    test_img.addEventListener('load', function (){
+                        var string = URL.createObjectURL(filz[0]);
+                        error = 0;
+                        cam.innerHTML = "<img style=\"width:320px; height:240px;\" id=\"my_image\"src=\""+string+"\" alt=\"\" />";
+                        input_field.remove();
+                        send_button.remove();
+                        });
+                    test_img.addEventListener('error', function(){
+                        pouet.innerHTML = "<br />Nope, image pas bonne, recommence mon brave";
+                    });
                 }
-            } 
+            }
+            else
+                pouet.innerHTML = "<br />Error";
         }, false);
     }
 
@@ -180,8 +199,10 @@
                 {
                     if (xhr.responseText)
                     {
+                        var preview = document.getElementById("preview_block");
+                        preview.innerHTML += '<div class="preview_image"><img style="width:100px; height=100px" src="' + photo.src + '" alt=""></div>';
                         feedback_field.innerHTML = "Image sauvegard&eacute;e !";
-                        //feedback_field.innerHTML = '<img src="' + xhr.responseText + '" alt ="" />';
+                        
                         save = 2;
                     }
                     else

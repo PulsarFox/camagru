@@ -53,14 +53,18 @@ function save_comment(id, name)
     else
     {
         var post = document.getElementById("comment" + id);
+        var button_comment = document.getElementById("submit_" + id);
+        var coms = document.getElementById(id);
         if (post && post.value != "")
         {
             xhr.addEventListener('readystatechange', function(){
                 if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
                 {
-                    if (xhr.responseText)
+                    if (xhr.responseText == "ok")
                     {
-                        console.log(xhr.responseText);
+                        button_comment.removeAttribute('onclick');
+                        post.value = null;
+                        document.location.reload(false);
                     }
                     else
                     {

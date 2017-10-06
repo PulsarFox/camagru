@@ -20,8 +20,7 @@ include_once("config/database.php");
         <?php
             if ($_SESSION['connected'] && $_SESSION['username'])
             {
-                //echo '<p class="hello_world"><span class="line">Connect&eacute; en tant que '.htmlspecialchars($_SESSION['username']).'</span></p>';
-                echo '<p class="hello_world"><span class="line">'.htmlspecialchars($_SESSION['username']).' - <a href="PHPscripts/disconnect.php">Se d&eacute;connecter</a></span></p>';
+                echo '<p class="hello_world"><span class="line">'.htmlspecialchars($_SESSION['username']).'</span></p>';
             }
             else
                 echo '<div class="menu_title_block" style="position:relative; top:6px;">';
@@ -32,7 +31,7 @@ include_once("config/database.php");
         <?php
             if ($_SESSION['connected'])
                 echo '<a class="menu_title editor" href="editeur.php">Editeur</a>
-                <a class="menu_title myaccount" href="">Mon Compte</a>';
+                <a class="menu_title deco" href="PHPscripts/disconnect.php">D&eacute;connexion</a>';
             else
                 echo '<a class="menu_title login" onclick="document.getElementById(\'modal\').style.display=\'block\';document.getElementById(\'username_field\').focus();" href="#">Log in</a>
                     <a class="menu_title signup" href="inscription.php">Sign up</a></div>';

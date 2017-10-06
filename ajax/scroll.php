@@ -1,6 +1,7 @@
 <?php
 header("Content-Type: text/xml");
 session_start();
+date_default_timezone_set('Europe/Paris');
 sleep(1);
 if (!isset($_POST['nbr_loaded']))
 {
@@ -59,7 +60,6 @@ foreach ($images as $pic)
                     <img class="dislike_image" src="images/dislike.png" alt="Dislike" style="width:50px;"/>
                 </div>
 		    </div>
-		    
 		</div>
 		</div>
 		<div class="comment">
@@ -86,7 +86,7 @@ foreach ($images as $pic)
 	echo  '</div>
 		<form method="post">
 		<textarea id="comment'.$pic['id'].'" placeholder="Type a comment" maxlength="500" value=""></textarea>
-		<input type="button" name="submit_'.$pic['id'].'" value="comment" onclick="save_comment(\''.$pic['id'].'\', \''.$_SESSION['username'].'\')">
+		<input type="button" id="submit_'.$pic['id'].'" name="submit_'.$pic['id'].'" value="comment" onclick="save_comment('.$pic['id'].', \''.$_SESSION['username'].'\')">
 		</form>
 		</div>
 		</div>';

@@ -40,5 +40,8 @@ if (isset($_POST['login']))
     else
         $_SESSION['login_error'] = "blank_username";
 }
-header("Location: ".$_SERVER['HTTP_REFERER']);
+if (basename($_SERVER['HTTP_REFERER'], ".php") == "inscription")
+    header("Location: ../index.php");
+else
+    header("Location: ".$_SERVER['HTTP_REFERER']);
 ?>

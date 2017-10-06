@@ -8,7 +8,7 @@ try {
 }
 try {
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-    //$pdo->exec("DROP TABLE IF EXISTS users");
+    $pdo->exec("DROP TABLE IF EXISTS users");
     //$pdo->exec("DROP TABLE IF EXISTS images");
     //$pdo->exec("DROP TABLE IF EXISTS clippers");
     //$pdo->exec("DROP TABLE IF EXISTS comments");
@@ -21,7 +21,8 @@ try {
                 `email` VARCHAR(50) NOT NULL,
                 `key` TEXT NOT NULL,
                 `is_active` BOOL NOT NULL,
-                `is_admin` BOOL NOT NULL)
+                `is_admin` BOOL NOT NULL,
+                `email_key` TEXT)
                 " );
     $pdo->exec("CREATE TABLE IF NOT EXISTS images (
                 `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -47,7 +48,7 @@ try {
     $pwd = hash('whirlpool', "root");
     $req_username = $pdo->query('SELECT username FROM users WHERE username="savincen"');
     if ($req_username->fetch() == NULL)
-        $pdo->exec("INSERT INTO users values(NULL, 'savincen', '".$pwd."', 'samy.vintffs@gmail.com', 'nokey', TRUE, TRUE)");
+        $pdo->exec("INSERT INTO users values(NULL, 'savincen', '".$pwd."', 'samy.vintffs@gmail.com', 'nokey', TRUE, TRUE, NULL)");
     $req_clippers = $pdo->query('SELECT id FROM clippers');
     if ($req_clippers->fetchAll() == NULL)
     {

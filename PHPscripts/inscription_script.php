@@ -41,7 +41,7 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
                 else
                 {
                     $key = md5(uniqid(rand(), true));
-                    $newuser = $db->prepare('INSERT INTO users values(NULL, ?, ?, ?, ?, FALSE,FALSE)');
+                    $newuser = $db->prepare('INSERT INTO users values(NULL, ?, ?, ?, ?, FALSE,FALSE, NULL)');
                     $newuser->bindParam(1, $user, PDO::PARAM_STR);
                     $newuser->bindParam(2, $pw, PDO::PARAM_STR);
                     $newuser->bindParam(3, $mail, PDO::PARAM_STR);

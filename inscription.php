@@ -14,7 +14,6 @@
 <?php
 include_once("verifpage.php");
 include_once("header.php");
-
 ?>
     <hr style="margin:0; width:100%;" />
     <div class="form_inscription">

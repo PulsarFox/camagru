@@ -39,7 +39,7 @@
         while (data[i] && i < 10)
         {
             conteneur.innerHTML += '<div class="preview_image"><img style="width:100px; height=100px" src="images/myimages/' + data[i]["src"] + '" alt="">';
-            conteneur.innerHTML += '<p class="preview_username">' + data[i]["username"] + '</p></div><br />';
+            conteneur.innerHTML += '</div><br />';
             console.log(data[i]["username"]);
 
             i++;
