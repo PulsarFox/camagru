@@ -310,6 +310,9 @@ input.oubli_mail
 #galerie_block
 {
     overflow-y: scroll;
+    height:80%;
+    width:100%;
+    position:absolute;
 }
 
 #footer

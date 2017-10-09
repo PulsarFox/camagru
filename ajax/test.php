@@ -5,7 +5,7 @@ try {
     $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("<div class='error'>Database access error : " . $e->getMessage() . "</div>");
+    echo "<div class='error'>Database access error : " . $e->getMessage() . "</div>";
 }
 if ($_POST['username'])
 {
@@ -20,7 +20,7 @@ if ($_POST['username'])
             echo "Ok";
     } catch (PDOException $e)
     {
-	    die("<div class='error'>User access error : " . $e->getMessage() . "</div>");
+	    echo "<div class='error'>User access error : " . $e->getMessage() . "</div>";
     }
 }
 else if ($_POST['mail'])
@@ -36,7 +36,7 @@ else if ($_POST['mail'])
             echo "Ok";
     } catch (PDOException $e)
     {
-	    die("<div class='error'>Mail access error : " . $e->getMessage() . "</div>");
+	    echo "<div class='error'>Mail access error : " . $e->getMessage() . "</div>";
     }
 }
 ?>
