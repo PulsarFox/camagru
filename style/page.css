@@ -310,7 +310,7 @@ input.oubli_mail
 #galerie_block
 {
     overflow-y: scroll;
-    height:80%;
+    height:100%;
     width:100%;
     position:absolute;
 }

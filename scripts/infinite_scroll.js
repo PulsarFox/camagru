@@ -3,15 +3,12 @@
     var xhr = null;
 
     var interval = setInterval(function(){
-        var galerie = document.getElementById("galerie_block");
-        galerie.style.height = (window.innerHeight - (document.getElementById("header").offsetHeight + document.getElementById("footer").offsetHeight)) + "px";
+        var galerie = document.getElementById("galerie_block");        
 
         if (xhr && xhr.readyState != 0 && xhr.readyState != 4)
             return;
         else if (count == 0)
-        {
             download_next_pic(proceed_info);
-        }
         else if (galerie.scrollTop >= (galerie.scrollHeight - galerie.clientHeight - 400))
         {
             download_next_pic(proceed_info);
@@ -70,5 +67,23 @@
             return;
         }
         document.getElementById("loader").style.display = "none";
+    }
+
+    window.addEventListener('load', real_resize, false);
+    window.addEventListener('resize', not_now_charlie, false);
+
+    var resize_timeout;
+    function not_now_charlie(){
+        if (!resize_timeout) {
+            resize_timeout = setTimeout(function (){
+                resize_timeout = null;
+                real_resize();
+            }, 66);
+        }
+    }
+
+    function real_resize(){
+        galerie = document.getElementById("galerie_block");
+        galerie.style.height = (window.innerHeight - (document.getElementById("header").offsetHeight + document.getElementById("footer").offsetHeight)) + "px";
     }
 }());

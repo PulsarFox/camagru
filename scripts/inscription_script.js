@@ -115,7 +115,6 @@ function test_pw(input)
 var user_ok = 0, mail_ok = 0, pw_ok = 0, conf_ok = 0;
 function set_events()
 {
-    var simili = 0;
     var user_field = document.getElementById("user"),
     mail_field = document.getElementById("mail"),
     pw_field = document.getElementById("pw"),
@@ -130,11 +129,16 @@ function set_events()
     user_field.addEventListener('keyup', function(event){
         var xhr = new XMLHttpRequest();
         
-        if (pw_field.value != "" && user_field.value != "" && user_field.value == pw_field.value)
+        if (user_field.value.length > 30)
+        {
+            user_field.style.borderColor = "red";
+            user_error.innerHTML = "Limitation : 30 caract&egrave;res";
+            user_ok = 0;
+        }
+        else if (pw_field.value != "" && user_field.value != "" && user_field.value == pw_field.value)
         {
             user_ok = 0;
             user_field.style.borderColor = "red";
-            simili = 1;
             user_error.innerHTML = "Le nom d'utilisateur ne doit pas etre similaire au mot de passe";
         }
         else if (user_field.value != "")
@@ -153,13 +157,6 @@ function set_events()
                         user_ok = 1;
                         user_field.style.borderColor = "green";
                         user_error.innerHTML = "<img class=\"okimg\" src=\"images/ok.png\" alt=\"\" title=\"ok\"/>";
-                        if (simili == 1 && pw_ok == 1)
-                        {
-                            pw_field.style.borderColor = "green";
-                            pw_error.innerHTML = "<img class=\"okimg\" src=\"images/ok.png\" alt=\"\" title=\"ok\"/>";
-                            pw_ok = 1;
-                            simili = 0;
-                        }
                     }
                     else
                     {
@@ -180,7 +177,7 @@ function set_events()
         else if (user_field.value == "")
         {
             user_ok = 0;
-            user_error.innerHTML = "T'as oubli&eacute; un truc tabernac";
+            user_error.innerHTML = "";
             user_field.style.borderColor = "";
         }
 
@@ -188,7 +185,13 @@ function set_events()
 
     mail_field.addEventListener('keyup', function(){
         var xhr = new XMLHttpRequest();
-        if (mail_field.value != "")
+        if (mail_field.value.length > 50)
+        {
+            mail_field.style.borderColor = "red";
+            mail_error.innerHTML = "Mail trop long sorry change (50 char max)";
+            mail_ok = 0;
+        }
+        else if (mail_field.value != "")
         {
             xhr.addEventListener('readystatechange', function(){
                 if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
@@ -201,7 +204,7 @@ function set_events()
                     }
                     else if (xhr.responseText == "Ok")
                     {
-                        mail_field.style.boderColor = "green";
+                        mail_field.style.borderColor = "green";
                         mail_error.innerHTML = "<img class=\"okimg\" src=\"images/ok.png\" alt=\"\" title=\"ok\"/>";
                         mail_ok = 1;
                     }
@@ -224,7 +227,7 @@ function set_events()
         else
         {
             mail_ok = 0;
-            mail_error.innerHTML = "T'as oubli&eacute; un truc tabernac";
+            mail_error.innerHTML = "";
             mail_field.style.borderColor = "";
         }
     }, false);
@@ -235,22 +238,7 @@ function set_events()
         {
             pw_field.style.borderColor = "";
             pw_ok = 0;
-            pw_error.innerHTML = "Mot de passe needed tabernac";
-        }
-        else if (pw_field.value != "" && conf_field.value != "" && pw_field.value != conf_field.value)
-        {
-            pw_field.style.borderColor = "red";
-            pw_ok = 0;
-            conf_field.style.borderColor = "red";
-            conf_ok = 0;
-            pw_error.innerHTML = "Les mots de passe ne correspondent pas";
-        }
-        else if (pw_field.value != "" && user_field.value != "" && pw_field.value == user_field.value)
-        {
-            pw_field.style.borderColor = "red";
-            pw_ok = 0;
-            pw_error.innerHTML = "Le mot de passe doit etre different du nom d'utilisateur";
-            pw_simili = 1;
+            pw_error.innerHTML = "";
         }
         else if (!re.test(pw_field.value))
         {
@@ -264,15 +252,21 @@ function set_events()
             pw_ok = 0;
             pw_error.innerHTML = "Le mot de passe doit comporter plus de 6 caract&egrave;res";
         }
+        else if (pw_field.value != "" && user_field.value != "" && pw_field.value == user_field.value)
+        {
+            pw_error.innerHTML = "Le mot de passe doit &ecirc;tre diff&eacute;rent du nom d'utilisateur";
+            pw_field.style.borderColor = "red";
+            pw_ok = 0;
+        }
+        else if (pw_field.value != "" && conf_field.value != "" && pw_field.value != conf_field.value)
+        {
+            pw_field.style.borderColor = "red";
+            pw_ok = 0;
+            pw_error.innerHTML = "Les mots de passe ne correspondent pas";
+
+        }
         else
         {
-            if (simili == 1 && user_ok == 1)
-            {
-                user_field.style.borderColor = "green";
-                user_error.innerHTML = "<img class=\"okimg\" src=\"images/ok.png\" alt=\"\" title=\"ok\"/>";
-                user_ok = 1;
-                simili = 0;
-            }
             pw_field.style.borderColor = "green";
             pw_error.innerHTML = "<img class=\"okimg\" src=\"images/ok.png\" alt=\"\" title=\"ok\"/>";
             pw_ok = 1;
@@ -282,24 +276,20 @@ function set_events()
     conf_field.addEventListener('keyup', function(){
         if (conf_field.value == "")
         {
-            conf_error.innerHTML = "Rho l'autre eh il manque un truc";
+            conf_error.innerHTML = "";
             conf_field.style.borderColor = "";
             conf_ok = 0;
         }
         else if (conf_field.value != "" && pw_field.value != "" && conf_field.value == pw_field.value)
         {
+
             conf_error.innerHTML = "<img class=\"okimg\" src=\"images/ok.png\" alt=\"\" title=\"ok\"/>";
             conf_field.style.borderColor = "green";
-            if (pw_ok == 1)
-            {
-                pw_field.style.borderColor = "green";
-                pw_error.innerHTML = "<img class=\"okimg\" src=\"images/ok.png\" alt=\"\" title=\"ok\"/>";
-            }
             conf_ok = 1;
         }
         else
         {
-            conf_error.innerHTML = "Ca correspond pas tabernac";
+            conf_error.innerHTML = "Les mots de passe ne correspondent pas";
             conf_field.style.borderColor = "red";
             conf_ok = 0;
         }

@@ -11,7 +11,7 @@ if ($_POST['username'])
 {
     $user = $_POST['username'];
     try {
-        $usn_exists = $db->prepare("SELECT username FROM users WHERE username=?");
+        $usn_exists = $db->prepare("SELECT `username` FROM `users` WHERE `username`=?");
         $usn_exists->bindParam(1, $user, PDO::PARAM_STR);
         $usn_exists->execute();
         if ($usn_exists->fetch() != NULL)
