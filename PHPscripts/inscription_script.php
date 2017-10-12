@@ -83,6 +83,7 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
         $header .= iconv_mime_encode("Subject", $subject, $subj_pref);
         if (mail($mail, $subject, $message, $header) === TRUE)
         {
+            echo $message;
             $_SESSION['inscription_error'] = "Mail bien envoy&eacute; !";
         }
         else
@@ -96,7 +97,7 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
             
         }
     }
-    header("Location: ../mail_send.php");
+    //header("Location: ../mail_send.php");
 }
 
 ?>

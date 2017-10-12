@@ -197,18 +197,22 @@
             xhr.addEventListener('readystatechange', function() {
                 if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0))
                 {
-                    if (xhr.responseText)
+                    if (xhr.responseText == "Ok")
                     {
                         var preview = document.getElementById("preview_block");
                         preview.innerHTML += '<div class="preview_image"><img style="width:100px; height=100px" src="' + photo.src + '" alt=""></div>';
+                        preview.innerHTML += '</div><br/>';
                         feedback_field.innerHTML = "Image sauvegard&eacute;e !";
                         
                         save = 2;
                     }
+                    else if (xhr.responseText)
+                    {
+                        feedback_field.innerHTML = "Erreur survenue lors de la sauvegarde = " + xhr.responseText;
+                    }
                     else
                     {
-                        feedback_field.innerHTML = "Erreur survenue lors de la sauvegarde";
-                        //save = 1;
+                        feedback_field.innerHTML = "Probleme cote server";
                     }
                 }
             });

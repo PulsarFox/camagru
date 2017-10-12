@@ -30,7 +30,7 @@ $comments_req = $db->prepare("SELECT username, comment, `timedate` FROM comments
 foreach ($images as $pic)
 {
 	$comments_req->bindParam(1, $pic['id'], PDO::PARAM_INT);
-	echo '<div id="block_picture_'.$pic['id'].'" class="'.$pic['username'].' block_pic"  >
+	echo '<div id="block_picture_'.$pic['id'].'" class="'.htmlspecialchars($pic['username']).' block_pic"  >
 		<div class="gallery_photo">
 		<p>'.date('j/m/Y \a H\h i\m\i\n s\s', $pic['time']/1000).'</p>
         <div class="photo">
@@ -86,7 +86,7 @@ foreach ($images as $pic)
 	echo  '</div>
 		<form method="post">
 		<textarea id="comment'.$pic['id'].'" placeholder="Type a comment" maxlength="500" value=""></textarea>
-		<input type="button" id="submit_'.$pic['id'].'" name="submit_'.$pic['id'].'" value="comment" onclick="save_comment('.$pic['id'].', \''.$_SESSION['username'].'\')">
+		<input type="button" id="submit_'.$pic['id'].'" name="submit_'.$pic['id'].'" value="comment" onclick="save_comment('.$pic['id'].', \''.htmlspecialchars($_SESSION['username']).'\')">
 		</form>
 		</div>
 		</div>';

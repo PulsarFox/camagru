@@ -25,17 +25,52 @@ if ($_POST['pic'] && $_POST['time'] && $_SESSION['username'])
     if (imagepng($picture, $imagepath))
     {
         try {
+            $db->beginTransaction();
             $newpic = $db->prepare("INSERT INTO images values(null, ?, ?, ?, 0)");
             $newpic->bindParam(1, $user, PDO::PARAM_STR);
             $newpic->bindParam(2, $imgname, PDO::PARAM_STR);
             $newpic->bindParam(3, $timestamp, PDO::PARAM_STR);
             $newpic->execute();
+            $db->commit();
             echo "Ok";
         } catch(PDOException $e) {
+            $db->rollBack();
             echo "Error";
         }
     }
     else
-        echo "Error1";
+    {
+        try {
+            $db->beginTransaction();
+            $id = $db->prepare("SELECT `id` FROM `users` WHERE `username` = ?");
+            $id->bindParam(1, $user);
+            $id->execute();
+            $lel = $id->fetch();
+            $db->commit();
+        } catch(PDOException $e) {
+            $db->rollBack();
+            echo "error3";
+        }
+        $imgname = "Chiabrena-User_id_".$lel['id']."_".$datetime.".png";
+        $imagepath = $path.$imgname;
+        if (imagepng($picture, $imagepath))
+        {
+            try {
+                $db->beginTransaction();
+                $newpic = $db->prepare("INSERT INTO images values(null, ?, ?, ?, 0)");
+                $newpic->bindParam(1, $user, PDO::PARAM_STR);
+                $newpic->bindParam(2, $imgname, PDO::PARAM_STR);
+                $newpic->bindParam(3, $timestamp, PDO::PARAM_STR);
+                $newpic->execute();
+                $db->commit();
+                echo "Ok";
+            } catch(PDOException $e) {
+                $db->rollBack();
+                echo "Error";
+            }
+        }
+        else
+            echo "Error creating image file";
+    }
 }
 ?>
