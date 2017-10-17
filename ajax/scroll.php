@@ -78,7 +78,7 @@ foreach ($images as $pic)
 		{
 			echo '<div class="comment_block">
                     <div class="comment_title"> '.htmlspecialchars($com['username']).' '.date('\P\o\s\t\&\e\a\c\u\t\e\; \l\e d/m/y \&\a\g\r\a\v\e\; G\Hi',$com['timedate']).'</div>
-                    <div class="comment_text">'.htmlspecialchars($com['comment']).'</div>
+                    <pre style="white-space: pre-wrap;"><div class="comment_text">'.htmlspecialchars($com['comment']).'</div></pre>
                 </div>';
 		}
 	}

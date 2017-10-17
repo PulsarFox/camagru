@@ -25,15 +25,9 @@
             <img class="presentation_image" src="images/hide_face.jpg" alt="" />
         </div>
     </div>
-
-    <div class="bloc_presentation" id="bloc">
-        <h1 class="bloc_presentation_title" id="title">HOW TO DO IT</h1>
-        <div class="do_it_first">
-        </div>
-        <div class="do_it_second">
-        </div>
-        </div>
-    </div>
+    <?php 
+    include_once("footer.php");
+    ?>
         <script>
             var desc = document.getElementById('desc_text');
             var title = document.getElementById('title');
@@ -50,7 +44,5 @@
                 return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
             }
         </script>
-    <div class="INSERT INCLUDE ONCE FOOTER">
-    </div>
 </body>
 </html>

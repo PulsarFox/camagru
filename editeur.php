@@ -61,6 +61,9 @@
         </div>
     </div>
     </div>
+    <?php 
+        include_once("footer.php");
+    ?>
     <script type="text/javascript" src="scripts/preview_pict.js"></script>
     <script type="text/javascript" src="scripts/drag_drop.js"></script>
 </body>

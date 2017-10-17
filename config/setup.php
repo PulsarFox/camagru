@@ -38,7 +38,7 @@ try {
         `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         `id_image` INT(6) NOT NULL,
         `username` VARCHAR(30) NOT NULL,
-        `comment` VARCHAR(500) NOT NULL,
+        `comment` VARCHAR(1000) NOT NULL,
         `timedate` INT(11) UNSIGNED NOT NULL)");
     $pdo->exec("CREATE TABLE IF NOT EXISTS likes_log (
         `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,

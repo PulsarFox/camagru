@@ -28,9 +28,9 @@ a
     text-align:center;
 }
 
-@media(min-width:1400px)
+@media(min-width:1200px)
 {
-    .titles{font-size:1.2vw;}
+    .titles{font-size:18px;}
 }
 
 #header
@@ -78,7 +78,7 @@ a
     font-family:TimeBurner;
 }
 
-@media(min-width:1400px)
+@media(min-width:1200px)
 {
     .menu_title{font-size:1.8vw;}
 }
@@ -125,6 +125,14 @@ a
     padding:5px;
     top:-8px;
     font-size:1.4vw;
+}
+
+@media(min-width:1200px)
+{
+    .line
+    {
+        font-size:18px;
+    }
 }
 
 .hello_world

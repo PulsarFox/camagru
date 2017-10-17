@@ -51,8 +51,9 @@
                 get_image_from_pc();
             else
             {
-                cam.style.backgroundImage = "url(images/trotro.jpg)";
-                cam.style.backgroundSize = "320px 240px";
+                get_image_from_pc();
+                //cam.style.backgroundImage = "url(images/trotro.jpg)";
+                //cam.style.backgroundSize = "320px 240px";
             }
         });
         video.addEventListener('canplay', function(event){
@@ -154,7 +155,8 @@
             {
                 canvas.width = 320;
                 canvas.height = 240;
-                imz = document.getElementById("my_image");
+                if ((imz = document.getElementById("my_image")) == null)
+                    return;
                 context.drawImage(imz, 0, 0, 320, 240);
                 video = imz;
             }
@@ -200,10 +202,11 @@
                     if (xhr.responseText == "Ok")
                     {
                         var preview = document.getElementById("preview_block");
-                        preview.innerHTML += '<div class="preview_image"><img style="width:100px; height=100px" src="' + photo.src + '" alt=""></div>';
+                        var data = preview.innerHTML;
+                        preview.innerHTML = '<div class="preview_image"><img style="width:100px; height=100px" src="' + photo.src + '" alt=""></div>';
                         preview.innerHTML += '</div><br/>';
+                        preview.innerHTML += data;
                         feedback_field.innerHTML = "Image sauvegard&eacute;e !";
-                        
                         save = 2;
                     }
                     else if (xhr.responseText)

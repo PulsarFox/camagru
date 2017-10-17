@@ -103,6 +103,7 @@
         },
         releaseElement:function(){
             deleteOverflow();
+            drop_zone.style.border = "";
             if(is_mobile == true)
             {
                 removeEventSimple(document, 'touchmove', dragDrop.dragMouse);
