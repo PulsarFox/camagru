@@ -1,6 +1,9 @@
 <?php
+session_start();
 include_once("../config/database.php");
-if($_POST['pic_id'] && $_POST['username'] && $_POST['post'])
+if($_SESSION['username'] != $_POST['username'])
+    echo "canaillou";
+else if($_POST['pic_id'] && $_POST['username'] && $_POST['post'])
 {
     $id = $_POST['pic_id'];
     $user = $_POST['username'];

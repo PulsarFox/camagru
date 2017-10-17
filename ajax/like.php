@@ -1,6 +1,9 @@
 <?php
+session_start();
 include_once('../config/database.php');
-if($_POST['id'] && $_POST['user'])
+if ($_SESSION['username'] != $_POST['user'])
+    echo "canaillou";
+else if($_POST['id'] && $_POST['user'])
 {
     $id = $_POST['id'];
     $like = $_POST['is_like'];

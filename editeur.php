@@ -55,8 +55,7 @@
     </div>
     <div class="preview_block">
         <div class="title_preview_block">
-            <p id="all_pictures" class="all_or_own">Toutes les photos</p>
-            <p id="own_pictures" class="all_or_own">Mes photos</p>
+            <p id="all_pictures" class="all_or_own">Photos r&eacute;centes</p>
         </div>
         <div class="image_preview_block" id="preview_block">
         </div>

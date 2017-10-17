@@ -25,7 +25,7 @@
         </div>
         <div class="container">
             <button type="button" onclick="document.getElementById('modal').style.display='none'" class="cancel">Cancel</button>
-            <a class="forgot" href="../forgot.php">Forgot password ?</a>
+            <a class="forgot" href="forgot.php">Forgot password ?</a>
         </div>
     </form>
 </div>

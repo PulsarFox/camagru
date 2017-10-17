@@ -1,10 +1,11 @@
-function like_fct(id, name, is_like, nb)
+function like_fct(e, id, name, is_like, nb)
 {
     var xhr = new XMLHttpRequest();
 
     if (!name)
     {
         alert("Les votes sont reserves aux utilisateurs connectes");
+        e.preventDefault();
         return;
     }
     else
@@ -16,7 +17,9 @@ function like_fct(id, name, is_like, nb)
         xhr.addEventListener('readystatechange', function() {
             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
             {
-                if (xhr.responseText)
+                if (xhr.responseText === "canaillou")
+                    alert("Essaye autre chose, tu ne m'aura point");
+                else if (xhr.responseText)
                 {
                     like_count.innerHTML = "<span>LIKES : " + xhr.responseText +"</span>"
                     if (xhr.responseText < 0)
@@ -44,12 +47,16 @@ function like_fct(id, name, is_like, nb)
     }
 }
 
-function save_comment(id, name)
+function save_comment(e, id, name)
 {
     var xhr = new XMLHttpRequest();
 
     if (!name)
+    {
         alert("Les commentaires sont reserves aux utilisateurs connectes");
+        e.preventDefault();
+        return;
+    }
     else
     {
         var post = document.getElementById("comment" + id);
@@ -64,11 +71,10 @@ function save_comment(id, name)
                     {
                         button_comment.removeAttribute('onclick');
                         post.value = null;
-                        document.location.reload(false);
                     }
-                    else
+                    else if (xhr.responseText == "canaillou")
                     {
-                        console.log("pasok");
+                        alert("Bien essaye petit canaillou");
                     }
                 }
                 else if (xhr.status != 200 && xhr.status != 0)
@@ -76,15 +82,20 @@ function save_comment(id, name)
             }, false);
             xhr.open("POST", "ajax/comment.php");
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("pic_id=" + id + "&username=" + name + "&post=" + post.value)
+            console.log(post.value);
+            xhr.send("pic_id=" + id + "&username=" + name + "&post=" + encodeURIComponent(post.value));
         }
     }
 }
 
-function delete_photo(id, name)
+function delete_photo(e, id, name)
 {
     if (!name)
-        alert("T'es arrive ici comment toi jeune haxxor?");
+    {
+        alert("Ouloulou les tests");
+        e.preventDefault;
+        return;
+    }
     else
     {
         var xhr = new XMLHttpRequest();
@@ -92,19 +103,41 @@ function delete_photo(id, name)
         xhr.addEventListener('readystatechange', function (){
             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
             {
-                if (xhr.responseText)
+                if (xhr.responseText == "ok")
                 {
                     console.log(xhr.responseText);
                 }
+                else if (xhr.responseText)
+                {
+                    alert("Arretez stp");
+                }
                 else
                 {
-                    console.log("pb suppression img");
+                    console.log("pb connexion");
                 }
             }
         }, false);
         xhr.open("POST", "ajax/delete_pic.php");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("pic_id=" + id);
+        xhr.send("pic_id=" + id + "&user=" + name);
         document.location.reload(false);
     }
+}
+
+function show_comments(id){
+    document.getElementById("comment_block" + id).style.display = "block";
+    var button = document.getElementById("show_button" + id);
+    document.getElementById("fieldset_comment" + id).style.borderWidth = "2px";
+    button.innerHTML = "&uarr; Cacher les commentaires &uarr;";
+    button.removeAttribute('onclick');
+    button.setAttribute('onclick', "close_comments("+ id +")");
+}
+
+function close_comments(id){
+    document.getElementById("comment_block" + id).style.display = "none";
+    document.getElementById("fieldset_comment" + id).style.borderWidth = "0px";
+    var button = document.getElementById("show_button" + id);
+    button.innerHTML = "&darr; Afficher les commentaires &darr;";
+    button.removeAttribute('onclick');
+    button.setAttribute('onclick', "show_comments("+ id +")");
 }

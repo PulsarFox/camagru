@@ -9,7 +9,6 @@ a
     color:rgb(30,30,30);
     padding:0px;
     border-bottom: 2px solid rgb(65, 142, 17);
-    width:150px;
     margin-bottom:0px;
 }
 
@@ -23,7 +22,15 @@ a
 {
     margin-left:20px;
     width:150px;
+    width:14vw;
+    max-width:170px;
+    font-size:1.5vw;
     text-align:center;
+}
+
+@media(min-width:1400px)
+{
+    .titles{font-size:1.2vw;}
 }
 
 #header
@@ -46,10 +53,10 @@ a
 
 .menu
 {
-    margin-left:60%;
     position:absolute;
+    right:100px;
     margin-top:30px;
-    width:500px;
+    width:42%;
     z-index:4;
     height:50px;
     text-align:center;
@@ -67,8 +74,13 @@ a
     margin:5px;
     position:relative;
     top: 4px;
-    font-size:23px;
+    font-size:1.8vw;
     font-family:TimeBurner;
+}
+
+@media(min-width:1400px)
+{
+    .menu_title{font-size:1.8vw;}
 }
 
 .menu_title:after
@@ -112,6 +124,7 @@ a
     position:relative;
     padding:5px;
     top:-8px;
+    font-size:1.4vw;
 }
 
 .hello_world

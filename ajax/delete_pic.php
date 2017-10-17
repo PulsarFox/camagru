@@ -1,9 +1,12 @@
 <?php
 session_start();
-include_once("../config/database.php");
-if($_POST['pic_id'])
+include_once("../config/database.php");include_once("../config/database.php");
+if ($_SESSION['username'] != $_POST['user'])
+    echo "canaillou";
+else if($_POST['pic_id'] && $_POST['user'])
 {
     $id = $_POST['pic_id'];
+    $user = $_POST['user'];
     $path = $_SERVER['DOCUMENT_ROOT']."/camagru/images/myimages/";
 
     try {
@@ -18,7 +21,7 @@ if($_POST['pic_id'])
         $pic_req->execute();
         $pic = $pic_req->fetch();
         if ($pic['username'] != $_SESSION['username'])
-            echo $pic['username'];
+            echo "canaillou";
         else
         {
             $src = $pic['src'];

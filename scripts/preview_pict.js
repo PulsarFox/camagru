@@ -4,16 +4,6 @@
     var all = 1;
     var xhr = new XMLHttpRequest();
 
-    all_pict.addEventListener('click', function(){
-        all = 1;
-        own_pict.style.backgroundColor = "white";
-        all_pict.style.backgroundColor = "green";
-    }, false);
-    own_pict.addEventListener('click', function(){
-        all = 0;
-        own_pict.style.backgroundColor = "green";
-        all_pict.style.backgroundColor = "white";
-    }, false);
     xhr.addEventListener('readystatechange', function(){
         if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0))
         {
