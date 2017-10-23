@@ -8,7 +8,7 @@ function like_fct(e, id, name, is_like, nb)
         e.preventDefault();
         return;
     }
-    else
+    else if (confirm("Le vote ne pourra pas être changé par la suite, confirmer ?") == true)
     {
         var like_count = document.getElementById("nb_like_" + id);
         var like = document.getElementById("like_img" + id);
@@ -47,13 +47,13 @@ function like_fct(e, id, name, is_like, nb)
     }
 }
 
-function save_comment(e, id, name)
+function save_comment(e, id, name, photo_name)
 {
     var xhr = new XMLHttpRequest();
 
     if (!name)
     {
-        alert("Les commentaires sont reserves aux utilisateurs connectes");
+        alert("Les commentaires sont réserves aux utilisateurs connectés");
         e.preventDefault();
         return;
     }
@@ -67,9 +67,14 @@ function save_comment(e, id, name)
             xhr.addEventListener('readystatechange', function(){
                 if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
                 {
+                    console.log(xhr.responseText);
                     if (xhr.responseText == "ok")
                     {
-                        button_comment.removeAttribute('onclick');
+                        var d = new Date();
+                        var data = coms.innerHTML;
+                        coms.innerHTML = '<div class="comment_block"><div class="comment_title">'+ name + ' Post&eacute; le '+d.getDate()+'/'+(d.getMonth() + 1)+'/'+d.getFullYear()+' &agrave; ' +d.getHours()+ 'H' + d.getMinutes() +'</div><pre style="white-space: pre-wrap;"><div class="comment_text">' + post.value +'</pre></div></div>';
+                        if (typeof(document.getElementById("no_comment")) == "undefined")
+                            coms.innerHTML += data;
                         post.value = null;
                     }
                     else if (xhr.responseText == "canaillou")
@@ -82,8 +87,7 @@ function save_comment(e, id, name)
             }, false);
             xhr.open("POST", "ajax/comment.php");
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            console.log(post.value);
-            xhr.send("pic_id=" + id + "&username=" + name + "&post=" + encodeURIComponent(post.value));
+            xhr.send("pic_id=" + id + "&username=" + name + "&post=" + encodeURIComponent(post.value) + "&user_pic=" + photo_name);
         }
     }
 }
@@ -96,7 +100,7 @@ function delete_photo(e, id, name)
         e.preventDefault;
         return;
     }
-    else
+    else if (confirm("Voulez vous vraiment supprimer votre œuvre d'art ?") == true)
     {
         var xhr = new XMLHttpRequest();
 
@@ -105,7 +109,8 @@ function delete_photo(e, id, name)
             {
                 if (xhr.responseText == "ok")
                 {
-                    console.log(xhr.responseText);
+                    document.getElementById("block_picture_" + id).remove();
+                    console.log("ok");
                 }
                 else if (xhr.responseText)
                 {
@@ -120,7 +125,6 @@ function delete_photo(e, id, name)
         xhr.open("POST", "ajax/delete_pic.php");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("pic_id=" + id + "&user=" + name);
-        document.location.reload(false);
     }
 }
 

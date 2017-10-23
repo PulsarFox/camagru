@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once("../config/database.php");
-if (isset($_POST['login']))
+if (!empty($_POST['login']))
 {
     if ($_POST['user_login'] && $_POST['password_login'])
     {
@@ -40,6 +40,8 @@ if (isset($_POST['login']))
     else
         $_SESSION['login_error'] = "blank_username";
 }
+else
+    echo $_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1));
 if (basename($_SERVER['HTTP_REFERER'], ".php") == "inscription")
     header("Location: ../index.php");
 else

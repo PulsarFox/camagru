@@ -19,6 +19,7 @@
     include_once("verifpage.php");
     include_once("header.php");
     include_once("config/setup.php");
+    echo $_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(getcwd());
     ?>
     <hr style="margin:0; width:100%;" />
     <div class="dragzone_images">
@@ -30,7 +31,7 @@
             $clipper = $query->fetchAll();
             while ($clipper[$i])
             {
-                echo '<img class="clipper '.$clipper[$i]["name"].' alt="" src="'.$clipper[$i]["src"].'" id="'.$clipper[$i]["name"].'" style="left: '.$left.'px;" />';
+                echo '<img class="clipper '.$clipper[$i]["name"].'" alt="clipper" src="'.$clipper[$i]["src"].'" id="'.$clipper[$i]["name"].'" style="left: '.$left.'px;" />';
                 $i++;
                 $left = $left + 120;
             }

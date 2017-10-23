@@ -7,7 +7,7 @@ else if($_POST['pic_id'] && $_POST['user'])
 {
     $id = $_POST['pic_id'];
     $user = $_POST['user'];
-    $path = $_SERVER['DOCUMENT_ROOT']."/camagru/images/myimages/";
+    $path = dirname(getcwd(), 1)."/images/myimages/";
 
     try {
         $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
@@ -42,4 +42,6 @@ else if($_POST['pic_id'] && $_POST['user'])
         echo "Error";
     }
 }
+else
+    header("Location: ../index.php");
 ?>

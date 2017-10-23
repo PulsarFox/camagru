@@ -30,8 +30,6 @@
         {
             conteneur.innerHTML += '<div class="preview_image"><img style="width:100px; height=100px" src="images/myimages/' + data[i]["src"] + '" alt="">';
             conteneur.innerHTML += '</div><br />';
-            console.log(data[i]["username"]);
-
             i++;
         }
     }

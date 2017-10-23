@@ -1,3 +1,4 @@
+var nodrop = false;
 (function(){
     var save = 0;
     var width = 320;
@@ -46,15 +47,8 @@
         })
         .catch (function(e)
         {
-            is_video = false;
-            if (e.name == "NotAllowedError" || e.name == "NotFoundError" || e.name == "PermissionDeniedError")
-                get_image_from_pc();
-            else
-            {
-                get_image_from_pc();
-                //cam.style.backgroundImage = "url(images/trotro.jpg)";
-                //cam.style.backgroundSize = "320px 240px";
-            }
+            nodrop = true;
+            get_image_from_pc();
         });
         video.addEventListener('canplay', function(event){
             if (!streaming)
@@ -65,7 +59,7 @@
                 if (height == width)
                 {
                     cam.innerHTML = "";
-                    cam.style.backgroundImage = "url(images/trotro.jpg)";
+                    cam.style.backgroundImage = "url(../images/trotro.jpg)";
                     cam.style.backgroundSize = "320px 240px";
                     streaming = false;
                 }
@@ -121,6 +115,8 @@
                         cam.innerHTML = "<img style=\"width:320px; height:240px;\" id=\"my_image\"src=\""+string+"\" alt=\"\" />";
                         input_field.remove();
                         send_button.remove();
+                        is_video = false;
+                        nodrop = false;
                         });
                     test_img.addEventListener('error', function(){
                         pouet.innerHTML = "<br />Nope, image pas bonne, recommence mon brave";
@@ -169,7 +165,7 @@
                     mil = date.getTime();
                 }
                 else
-                    clearphoto(); //mettre erreur photo
+                    clearphoto();
             });
             var clippers = document.getElementsByClassName('ondropzone');
             var dataphrase = "video=" + encodeURIComponent(dataUrl) + "&video_x=" + video.offsetLeft + "&video_y=" + video.offsetTop + "&video_width=" + video.offsetWidth + "&video_height=" + video.offsetHeight; 
@@ -215,7 +211,7 @@
                     }
                     else
                     {
-                        feedback_field.innerHTML = "Probleme cote server";
+                        feedback_field.innerHTML = "Erreur serveur";
                     }
                 }
             });

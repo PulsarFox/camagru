@@ -15,9 +15,9 @@ if ($_POST['pic'] && $_POST['time'] && $_SESSION['username'])
     } catch (PDOException $e) {
         echo "Error";
     }
-    $path = $_SERVER['DOCUMENT_ROOT']."/camagru/images/myimages/"; 
+    $path = dirname(getcwd(), 1)."/images/myimages/"; 
     if (!is_dir($path))
-        mkdir($path, "0744");
+        mkdir($path, "0777");
     $datetime = date('Y-m_H-i-s', $timestamp / 1000);
     $user = $_SESSION['username'];
     $imgname = "Chiabrena-".$user."_".$datetime.".png";

@@ -1,4 +1,9 @@
-<div id="footer">
+<?php
+if ($page == "editeur")
+    echo '<div id="footer" style="position:initial; margin-top:30px;">';
+else
+    echo '<div id="footer">';
+?>
     <div class="footer_picture" onclick="scrollLent()">
         <img alt="scroll_top_left"  src="images/fleche.png" style="width:48px;"/>
         <p>Retour en haut de page</p>

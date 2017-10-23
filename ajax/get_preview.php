@@ -13,6 +13,13 @@ if ($_POST['all'])
     if ($all == 1)
     {
         try {
+            $check_exists = $db->query("SELECT `id`, `src` FROM `images` ORDER BY `id` DESC LIMIT 10");
+            $file_exists = $check_exists->fetchAll();
+            foreach($file_exists as $file)
+            {
+                if (!file_exists(dirname(getcwd(), 1)."/images/myimages/".$file['src']))
+                    $db->query("DELETE FROM `images` WHERE id =".$file['id'].";");
+            }
             $pictures = $db->query("SELECT `id`, `username`, `src`, `time` FROM `images` ORDER BY `id` DESC LIMIT 10");
             echo json_encode($pictures->fetchAll());
         } catch (PDOException $e){
