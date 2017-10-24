@@ -1,3 +1,4 @@
+<?php include_once("../verifpage.php"); ?>
 <div id="modal" class="modal_style">
     <form class="loginform animate" action="PHPscripts/login.php" name="loginform" method="post">
         <span onclick="document.getElementById('modal').style.display='none'" class="closemodal">Close</span>
@@ -20,11 +21,9 @@
                     echo '<input class="input ok" type="password" name="password_login" id="password_field" placeholder="Entrez votre mot de passe" name="password">';
                 ?>
             </div>
-            <input id="button" name="login" value="Login" type="submit">
-            <input type="checkbox" checked="checked"> Remember me
+            <input id="button" name="login" value="Login" type="submit" />
         </div>
         <div class="container">
-            <button type="button" onclick="document.getElementById('modal').style.display='none'" class="cancel">Cancel</button>
             <a class="forgot" href="forgot.php">Forgot password ?</a>
         </div>
     </form>

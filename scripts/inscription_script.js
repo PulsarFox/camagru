@@ -199,7 +199,7 @@ function set_events()
                     if (xhr.responseText == "Exists")
                     {
                         mail_field.style.borderColor = "red";
-                        mail_error.innerHTML = "Le mail existe deja";
+                        mail_error.innerHTML = "Le mail existe déjà";
                         mail_ok = 0;
                     }
                     else if (xhr.responseText == "Ok")
@@ -207,6 +207,12 @@ function set_events()
                         mail_field.style.borderColor = "green";
                         mail_error.innerHTML = "<img class=\"okimg\" src=\"images/ok.png\" alt=\"\" title=\"ok\"/>";
                         mail_ok = 1;
+                    }
+                    else if (xhr.responseText == "Invalid")
+                    {
+                        mail_field.style.borderColor = "red";
+                        mail_error.innerHTML = "Adresse mail invalide";
+                        mail_ok = 0;
                     }
                     else 
                     {
@@ -303,7 +309,6 @@ function valid()
         return true;
     else
     {
-        console.log("noreturn");
         return false;
     }
 }

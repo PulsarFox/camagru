@@ -140,7 +140,6 @@ var nodrop = false;
         var xhr = new XMLHttpRequest;
         var date = new Date();
         var context = canvas.getContext("2d");
-        console.log(is_video);
         if ((width && height) || is_video == false)
         {
             canvas.width = width;
@@ -199,7 +198,7 @@ var nodrop = false;
                     {
                         var preview = document.getElementById("preview_block");
                         var data = preview.innerHTML;
-                        preview.innerHTML = '<div class="preview_image"><img style="width:100px; height=100px" src="' + photo.src + '" alt=""></div>';
+                        preview.innerHTML = '<div class="preview_image"><img style="width:150px;" src="' + photo.src + '" alt=""></div>';
                         preview.innerHTML += '</div><br/>';
                         preview.innerHTML += data;
                         feedback_field.innerHTML = "Image sauvegard&eacute;e !";

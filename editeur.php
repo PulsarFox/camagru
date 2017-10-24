@@ -8,6 +8,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="style/page.css" />
     <link rel="stylesheet" type="text/css" href="style/header.css" />
@@ -19,7 +20,6 @@
     include_once("verifpage.php");
     include_once("header.php");
     include_once("config/setup.php");
-    echo $_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(getcwd());
     ?>
     <hr style="margin:0; width:100%;" />
     <div class="dragzone_images">
@@ -45,7 +45,7 @@
         <div class="camera" id="drop_zone">
             <video id="video" class="dropper">Video stream not available.</video>
         </div>
-        <button class="button_picture" id="startbutton">Take photo</button>
+        <button class="button_picture" id="startbutton" disabled="true">Take photo</button>
         <canvas id="canvas" style="display:none">
         </canvas>
         <div class="output">

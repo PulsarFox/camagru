@@ -17,6 +17,13 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
     {
         $user = $_POST['username'];
         $mail = $_POST['mail'];
+        $re = "/^[a-z'0-9]+([._-][a-z'0-9]+)*@([a-z0-9]+([._-][a-z0-9]+))+$/";
+        if (preg_match($re, $mail) == NULL)
+        {
+            $_SESSION['inscription_error'] = "invalid";
+            header("Location: ../inscription.php");
+            return;
+        }
         try
         {
             $db->beginTransaction();
@@ -43,7 +50,6 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
                     $newuser->execute();
                     $last_id = $db->lastInsertId();
                     $is_valid = TRUE;
-                    $_SESSION['inscription_error'] = "bug plus loin";
                 }
             }
            $db->commit();
@@ -88,7 +94,6 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
         }
         else
         {
-            echo "test1";
             try {
                 $db->exec("DELETE FROM `users` WHERE id=".$last_id);
             } catch (PDOException $e){
@@ -98,7 +103,7 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
             
         }
     }
-    //header("Location: ../mail_send.php");
+    header("Location: ../mail_send.php");
 }
-
+header("Location:../inscription.php");
 ?>

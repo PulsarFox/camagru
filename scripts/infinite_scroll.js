@@ -27,7 +27,6 @@
             }
             else if (xhr.readyState === 4 && xhr.status != 200 && xhr.status != 0)
             {
-                console.log("wat");
                 loader.style.display = "none";
                 clearInterval(interval);
             }

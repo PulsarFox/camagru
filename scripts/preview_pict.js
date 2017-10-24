@@ -14,7 +14,10 @@
                 set_previews(doto);
             }
             else
-                console.log("errormate");
+            {
+                conteneur.innerHTML = "Erreur serveur<br />";
+                return ;
+            }
         }
     }, false);
     xhr.open("POST", "ajax/get_preview.php");
@@ -28,7 +31,7 @@
         conteneur.innerHTML = "";
         while (data[i] && i < 10)
         {
-            conteneur.innerHTML += '<div class="preview_image"><img style="width:100px; height=100px" src="images/myimages/' + data[i]["src"] + '" alt="">';
+            conteneur.innerHTML += '<div class="preview_image"><img style="width:150px;" src="images/myimages/' + data[i]["src"] + '" alt="">';
             conteneur.innerHTML += '</div><br />';
             i++;
         }

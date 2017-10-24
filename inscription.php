@@ -5,6 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" type="text/css" href="style/page.css" />
     <link rel="stylesheet" type="text/css" href="style/header.css" />
     <script type="text/javascript" src="scripts/inscription_script.js"></script>
@@ -26,6 +27,11 @@ include_once("header.php");
             </div>
             <div class="inscription">
                 Adresse mail: <input id="mail" type="email" name="mail" /><span id="mail_error"></span>
+                <?php
+                    if ($_SESSION['inscription_error'] == "invalid")
+                        echo "<span>Mail invalide</span>";
+                    $_SESSION['inscription_error'] = "";
+                ?>
             <br />
             </div>
             <div class="inscription">

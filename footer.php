@@ -1,6 +1,6 @@
 <?php
 if ($page == "editeur")
-    echo '<div id="footer" style="position:initial; margin-top:30px;">';
+    echo '<div id="footer" style="position:absolute; bottom:0px; margin-top:30px;">';
 else
     echo '<div id="footer">';
 ?>

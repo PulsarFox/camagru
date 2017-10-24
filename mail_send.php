@@ -5,6 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" type="text/css" href="style/page.css" />
     <link rel="stylesheet" type="text/css" href="style/header.css" />
     <title>Chiabrena</title>

@@ -1,4 +1,5 @@
 <?php
+include_once("../verifpage.php");
 try {
     $dbh = new PDO("mysql:host=localhost", $DB_USER, $DB_PASSWORD);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

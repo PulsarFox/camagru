@@ -83,9 +83,15 @@
                 scrollleft = document.documentElement.scrollLeft;
 
             if (nodrop == false && !(realX <= drop_zone.offsetLeft - 99 || realX >= drop_width - 1 || realY <= drop_zone.offsetTop - 99 || realY >= drop_height - 1))
+            {
                 drop_zone.style.border = "2px solid red";
+                drop_zone.style.marginTop = "18px";
+            }
             else
+            {
                 drop_zone.style.border = "";
+                drop_zone.style.marginTop = "20px";
+            }
             if (realX < 0 + scrollleft)
                 realX = 0 + scrollleft;
             else if (realX > window.innerWidth - 100 + scrollleft)
@@ -104,6 +110,7 @@
         releaseElement:function(){
             deleteOverflow();
             drop_zone.style.border = "";
+            drop_zone.style.marginTop = "20px";
             if(is_mobile == true)
             {
                 removeEventSimple(document, 'touchmove', dragDrop.dragMouse);
@@ -116,6 +123,10 @@
             }
             dragDrop.draggedObject.className = "clone ondropzone";
             dragDrop.draggedObject = null;
+            if (document.getElementsByClassName("ondropzone").length == 0)
+                document.getElementById("startbutton").setAttribute("disabled", "true");
+            else
+                document.getElementById("startbutton").removeAttribute("disabled");
         }
     }
     function addEventSimple(obj, evt, fn){

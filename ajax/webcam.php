@@ -31,4 +31,6 @@ if ($_POST['video'])
     ob_end_clean();
     echo "data:image/png;base64,".base64_encode($content);
 }
+else
+    header('Location:http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/index.php');
 ?>

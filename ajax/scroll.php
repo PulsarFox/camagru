@@ -67,7 +67,7 @@ foreach ($images as $pic)
 			</div>
 			</div>
 			<fieldset id="fieldset_comment'.$pic['id'].'" class="fieldset_comment">
-			<legend align="center"><button class="show_button" id="show_button'.$pic['id'].'" onclick="show_comments('.$pic['id'].')" > Afficher les commentaires </button></legend>
+			<legend align="center"><button class="show_button" id="show_button'.$pic['id'].'" onclick="show_comments('.$pic['id'].')" >&darr; Afficher les commentaires &darr;</button></legend>
 			<div class="comment" id="comment_block'.$pic['id'].'" style="display:none;">
 
 			<div id="'.$pic['id'].'" class="block_id">';

@@ -67,7 +67,6 @@ function save_comment(e, id, name, photo_name)
             xhr.addEventListener('readystatechange', function(){
                 if(xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
                 {
-                    console.log(xhr.responseText);
                     if (xhr.responseText == "ok")
                     {
                         var d = new Date();
@@ -108,18 +107,13 @@ function delete_photo(e, id, name)
             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
             {
                 if (xhr.responseText == "ok")
-                {
                     document.getElementById("block_picture_" + id).remove();
-                    console.log("ok");
-                }
                 else if (xhr.responseText)
                 {
                     alert("Arretez stp");
                 }
                 else
-                {
-                    console.log("pb connexion");
-                }
+                    alert("pb connexion");
             }
         }, false);
         xhr.open("POST", "ajax/delete_pic.php");

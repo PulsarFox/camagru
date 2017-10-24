@@ -9,7 +9,7 @@ include_once("../config/database.php");
     if ($_POST['submit'] == "Envoyer" && $_POST['mail'])
     {
         try{
-            $mail_exists = $db->prepare("SELECT `mail` FROM users WHERE `mail`=?");
+            $mail_exists = $db->prepare("SELECT `email` FROM users WHERE `email`=?");
             $mail_exists->bindParam(1, $_POST['mail']);
             $mail_exists->execute();
             if (($mail = $mail_exists->fetch()) != NULL)
@@ -38,11 +38,12 @@ include_once("../config/database.php");
                 $header .= iconv_mime_encode("Subject", $subject, $subj_pref);
                 if (mail($mail, $subject, $message, $header) === TRUE)
                     header("Location: ../index.php");
+                else
+                    echo "Probleme d'envoi de mail";   
             }
         }catch(PDOException $e) {
             die("<div class='error'>Database access error : " . $e->getMessage() . "</div>");
         }
     }
-    else
-        header("Location: ../forgot.php");
+    header("Location: ../forgot.php");
 ?>

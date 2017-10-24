@@ -1,8 +1,8 @@
 <?php
+include_once("../verifpage.php");
 $DB_NAME = 'camagru_savincen';
 $DB_DSN = "mysql:host=localhost;dbname=".$DB_NAME;
 $DB_USER = 'root';
 //$DB_PASSWORD = 'root';
 $DB_PASSWORD = 'root123';
-//$DB_PASSWORD = 'Kaouui7q';
 ?>

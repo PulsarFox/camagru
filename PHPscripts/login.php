@@ -39,11 +39,12 @@ if (!empty($_POST['login']))
         $_SESSION['login_error'] = "blank_password";
     else
         $_SESSION['login_error'] = "blank_username";
+    if (basename($_SERVER['HTTP_REFERER'], ".php") == "inscription")
+        header("Location: ../index.php");
+    else
+        header("Location: ".$_SERVER['HTTP_REFERER']);
 }
 else
-    echo $_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1));
-if (basename($_SERVER['HTTP_REFERER'], ".php") == "inscription")
-    header("Location: ../index.php");
-else
-    header("Location: ".$_SERVER['HTTP_REFERER']);
+    header('Location:http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/index.php');
+
 ?>

@@ -26,6 +26,12 @@ if ($_POST['username'])
 else if ($_POST['mail'])
 {
     $mail = $_POST['mail'];
+    $re = "/^[a-z'0-9]+([._-][a-z'0-9]+)*@([a-z0-9]+([._-][a-z0-9]+))+$/";
+    if (preg_match($re, $mail) == NULL)
+    {
+        echo "Invalid";
+        return;
+    }
     try {
         $mail_exists = $db->prepare("SELECT email FROM users WHERE email=?");
         $mail_exists->bindParam(1, $mail, PDO::PARAM_STR);

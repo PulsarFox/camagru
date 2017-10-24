@@ -4,6 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="style/page.css" />
     <link rel="stylesheet" type="text/css" href="style/header.css" />
