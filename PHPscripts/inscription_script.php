@@ -82,7 +82,7 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
         <br />
         <br />
         Pour valider votre inscription, veuillez cliquer sur le lien suivant :<br/>
-        <a href="http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/mail.php?key='.$key.'&user='.htmlspecialchars($user).'">Valider</a></p>
+        <a href="http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/mail.php?key='.$key.'&user='.urlencode($user).'">Valider</a></p>
         </body>
         </html>
         ';

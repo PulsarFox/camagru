@@ -126,7 +126,7 @@ function set_events()
     conf_error = document.getElementById("confirm_pw_error");
     
 
-    user_field.addEventListener('keyup', function(event){
+    user_field.addEventListener('change', function(event){
         var xhr = new XMLHttpRequest();
         
         if (user_field.value.length > 30)
