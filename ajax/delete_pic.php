@@ -43,5 +43,5 @@ else if($_POST['pic_id'] && $_POST['user'])
     }
 }
 else
-    header("Location: ../index.php");
+    header('Location:http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/index.php');
 ?>

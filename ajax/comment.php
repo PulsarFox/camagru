@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once("../config/database.php");
+date_default_timezone_set('Europe/Paris');
 if(!empty($_SESSION['username']) && $_SESSION['username'] != $_POST['username'])
     echo "canaillou";
 else if($_POST['pic_id'] && $_POST['username'] && $_POST['post'] && $_POST['user_pic'])
@@ -41,10 +42,10 @@ else if($_POST['pic_id'] && $_POST['username'] && $_POST['post'] && $_POST['user
                 $message = '
                 <html>
                 <body>
-                <p>Bonjour, '.htmlspecialchars($user).'
+                <p>Bonjour,
                 <br />
                 <br />
-                Le commentaire suivant vient d\'être publié sur votre photo du //insert date<br/>
+                Le commentaire suivant vient d\'être publié sur votre photo du '.date('d/m/y \à H\Hi', $time).' :<br/>
                 '.$comment.'
                 </body>
                 </html>
@@ -58,17 +59,19 @@ else if($_POST['pic_id'] && $_POST['username'] && $_POST['post'] && $_POST['user
                 $header .= "Content-Transfer-Encoding: 8bit \r\n";
                 $header .= "Date: ".date("r (T)")." \r\n";
                 $header .= iconv_mime_encode("Subject", $subject, $subj_pref);
-                if (mail("samy.vincentffs@gmail.com", $subject, $message, $header) == TRUE)
+                if (mail($mail['email'], $subject, $message, $header) == TRUE)
                     echo "ok";
                 else
                     echo "Erreur envoi mail";
             }
             else
-                echo "Le nom d'utilisateur n'existe pas";
+                echo "Email ou utilisateur incorrect";
         } catch (PDOException $e) {
             $db->rollBack();
             echo "Error";
         }
     }
 }
+else
+    header('Location:http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/index.php');
 ?>

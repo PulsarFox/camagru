@@ -13,7 +13,7 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
 {
     $pw = hash('whirlpool', $_POST['password']);
     $cpw = hash('whirlpool', $_POST['confirm_password']);
-    if ($_POST['confirm_password'] != NULL && $pw === $cpw)
+    if ($_POST['confirm_password'] != NULL && $pw === $cpw && strlen($_POST['password']) < 128 && strlen($_POST['password']) >= 6)
     {
         $user = $_POST['username'];
         $mail = $_POST['mail'];
@@ -60,8 +60,16 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
 	        echo "<div class='error'>Database access error : " . $e->getMessage() . "</div>";
         }
     }
-    if ($is_valid == FALSE)
+    else
+    {
         header('Location:../inscription.php');
+        return;
+    }
+    if ($is_valid == FALSE)
+    {
+        header('Location:../inscription.php');
+        return;
+    }
     else
     {
         $from_mail = "admin@chiabrena.com";
@@ -100,10 +108,14 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
                 $_SESSION['inscription_error'] = "Problem delete user from db";
             } 
             $_SESSION['inscription_error'] = "Probleme lors de l'envoi du mail, recommencez votre inscription";
-            
         }
     }
     header("Location: ../mail_send.php");
+    return;
 }
-header("Location:../inscription.php");
+else
+{
+    header("Location:../inscription.php");
+    return;
+}
 ?>

@@ -183,7 +183,7 @@ function set_events()
 
     }, false);
 
-    mail_field.addEventListener('keyup', function(){
+    mail_field.addEventListener('change', function(){
         var xhr = new XMLHttpRequest();
         if (mail_field.value.length > 50)
         {

@@ -22,6 +22,13 @@
             <input class="oubli_mail" type="mail" name="mail" placeholder="Ex : mecsympa@ihaveagirlfriend" />
             <input class="oubli_button" type="submit" value="Envoyer" name="submit">
         </form>
+        <?php
+            if ($_SESSION['mail_error'])
+            {
+                echo "<br /><span>".$_SESSION['mail_error']."</span>";
+                $_SESSION['mail_error'] = "";
+            }
+        ?>
     </div>
 </body>
 </html>

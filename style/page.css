@@ -526,5 +526,19 @@ input.oubli_mail
     border-width:0;
 }
 
+.form_reset_pw
+{
+    margin: 0 auto;
+    width: 50%;
+    text-align:center;
+    border:2px solid black;
+    border-radius: 3px;
+    margin-top:30px;
+}
 
+.conf_button_reset
+{
+    margin-top:10px;
+    margin-bottom:10px;
+}
 

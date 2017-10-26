@@ -73,4 +73,6 @@ if ($_POST['pic'] && $_POST['time'] && $_SESSION['username'])
             echo "Error creating image file";
     }
 }
+else
+    header('Location:http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/index.php');
 ?>

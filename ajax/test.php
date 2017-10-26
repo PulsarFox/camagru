@@ -45,4 +45,6 @@ else if ($_POST['mail'])
 	    echo "<div class='error'>Mail access error : " . $e->getMessage() . "</div>";
     }
 }
+else
+    header('Location:http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/index.php');
 ?>

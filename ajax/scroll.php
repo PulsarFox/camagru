@@ -7,12 +7,11 @@ date_default_timezone_set('Europe/Paris');
 sleep(1);
 if (!isset($_POST['nbr_loaded']))
 {
-	$_SESSION['error'] = "You can't access to this page";
-	header("Location: ../index.php");
+	header('Location:http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/index.php');
 	exit;
 }
 
-include("../config/database.php");
+include_once("../config/database.php");
 $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 try
@@ -76,12 +75,12 @@ foreach ($images as $pic)
 			$comments_req->execute();
 			$comments = $comments_req->fetchAll(PDO::FETCH_ASSOC);
 			if ($comments == null)
-				echo '<p id="no_comment" class="no_comment">Personne n\'a jugé digne de commenter cette photo</p>';
+				echo '<p id="no_comment'.$pic['id'].'" class="no_comment">Personne n\'a jugé digne de commenter cette photo</p>';
 			$comments_req->closeCursor();
 			foreach($comments as $com)
 			{
 				echo '<div class="comment_block">
-						<div class="comment_title"> '.htmlspecialchars($com['username']).' '.date('\P\o\s\t\é; \l\e d/m/Y \à G\Hi',$com['timedate']).'</div>
+						<div class="comment_title"> '.htmlspecialchars($com['username']).' '.date('\P\o\s\t\é \l\e d/m/Y \à G\Hi',$com['timedate']).'</div>
 						<pre style="white-space: pre-wrap;"><div class="comment_text">'.htmlspecialchars($com['comment']).'</div></pre>
 					</div>';
 			}

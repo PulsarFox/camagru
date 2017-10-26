@@ -44,4 +44,6 @@ else if($_POST['id'] && $_POST['user'])
         echo $e->getMessage();
     }
 }
+else
+    header('Location:http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/index.php');
 ?>

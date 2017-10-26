@@ -40,7 +40,7 @@
                     echo "Le compte est dej&agrave; activ&eacute;";
                 else if ($tab['username'] == $_GET['user'])
                 {
-                    echo "Compte active";
+                    echo "Compte activé";
                     $activate = $db->prepare("UPDATE users SET is_active = TRUE WHERE `username` = ? AND `key` = ?");
                     $activate->bindParam(1, $_GET['user']);
                     $activate->bindParam(2, $_GET['key']);

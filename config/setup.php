@@ -49,7 +49,7 @@ try {
     $pwd = hash('whirlpool', "root");
     $req_username = $pdo->query('SELECT username FROM users WHERE username="savincen"');
     if ($req_username->fetch() == NULL)
-        $pdo->exec("INSERT INTO users values(NULL, 'savincen', '".$pwd."', 'samy.vintffs@gmail.com', 'nokey', TRUE, TRUE, NULL)");
+        $pdo->exec("INSERT INTO users values(NULL, 'savincen', '".$pwd."', 'samy.vincentffs@gmail.com', 'nokey', TRUE, TRUE, NULL)");
     $req_clippers = $pdo->query('SELECT id FROM clippers');
     if ($req_clippers->fetchAll() == NULL)
     {

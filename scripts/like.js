@@ -71,9 +71,11 @@ function save_comment(e, id, name, photo_name)
                     {
                         var d = new Date();
                         var data = coms.innerHTML;
-                        coms.innerHTML = '<div class="comment_block"><div class="comment_title">'+ name + ' Post&eacute; le '+d.getDate()+'/'+(d.getMonth() + 1)+'/'+d.getFullYear()+' &agrave; ' +d.getHours()+ 'H' + d.getMinutes() +'</div><pre style="white-space: pre-wrap;"><div class="comment_text">' + post.value +'</pre></div></div>';
-                        if (typeof(document.getElementById("no_comment")) == "undefined")
-                            coms.innerHTML += data;
+                        coms.innerHTML = '<div class="comment_block"><div class="comment_title">'+ escapeHtml(name) + ' Post&eacute; le '+d.getDate()+'/'+(d.getMonth() + 1)+'/'+d.getFullYear()+' &agrave; ' +d.getHours()+ 'H' + d.getMinutes() +'</div><pre style="white-space: pre-wrap;"><div class="comment_text">' + escapeHtml(post.value) +'</pre></div></div>';
+                        coms.innerHTML += data;
+                        var comm = document.getElementById("no_comment"+id);
+                        if (comm)
+                            comm.remove();
                         post.value = null;
                     }
                     else if (xhr.responseText == "canaillou")
@@ -86,9 +88,21 @@ function save_comment(e, id, name, photo_name)
             }, false);
             xhr.open("POST", "ajax/comment.php");
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("pic_id=" + id + "&username=" + name + "&post=" + encodeURIComponent(post.value) + "&user_pic=" + photo_name);
+            xhr.send("pic_id=" + id + "&username=" + encodeURIComponent(name) + "&post=" + encodeURIComponent(post.value) + "&user_pic=" + encodeURIComponent(photo_name));
         }
     }
+}
+
+function escapeHtml(text) {
+    var map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
 
 function delete_photo(e, id, name)

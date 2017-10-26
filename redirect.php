@@ -23,15 +23,8 @@
     ?>
     <br />
     <p><?php
-    if ($_SESSION['inscription_error'])
-    {
-        echo $_SESSION['inscription_error'];
-        $_SESSION['inscription_error'] = "";
-    }
-    else if ($_SESSION['inscription_error'] == "")
-        echo "Vous vous êtes perdus je crois";
-    else
-        echo "Erreur lors de l'inscription";
+    if ($_SESSION['redirect_message'])
+        echo $_SESSION['redirect_message'];
     ?><br />
     Redirection dans <span id="compt">5</span> seconde<span id="s">s</span>.<br />
     Pour &ecirc;tre redirig&eacute; automatiquement, <a href="index.php">Cliquez ici</a></p>
