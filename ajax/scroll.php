@@ -16,7 +16,7 @@ $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 try
 {
-	$images_req = $db->prepare('SELECT id, username, src, `time`, likes FROM images ORDER BY `time` ASC LIMIT '.$_POST['nbr_loaded'].', 5');
+	$images_req = $db->prepare('SELECT id, username, src, `time`, likes FROM images ORDER BY `time` DESC LIMIT '.$_POST['nbr_loaded'].', 5');
 	$images_req->execute();
 	$i = $images_req->rowCount();
 	$images = $images_req->fetchAll(PDO::FETCH_ASSOC);
