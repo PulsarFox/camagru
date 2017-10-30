@@ -2,7 +2,7 @@ var nodrop = false;
 (function(){
     var save = 0;
     var width = 320;
-    var height = 0;
+    var height = 240;
     var streaming = false;
     var video = null;
     var canvas = null;
@@ -53,7 +53,7 @@ var nodrop = false;
         video.addEventListener('canplay', function(event){
             if (!streaming)
             {
-                height = video.videoHeight / (video.videoWidth/width);
+                height = 240;
                 if (isNaN(height))
                     height = width / (4/3);
                 if (height == width)

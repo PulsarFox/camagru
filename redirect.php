@@ -25,6 +25,7 @@
     <p><?php
     if ($_SESSION['redirect_message'])
         echo $_SESSION['redirect_message'];
+    $_SESSION['redirect_message'] = "";
     ?><br />
     Redirection dans <span id="compt">5</span> seconde<span id="s">s</span>.<br />
     Pour &ecirc;tre redirig&eacute; automatiquement, <a href="index.php">Cliquez ici</a></p>

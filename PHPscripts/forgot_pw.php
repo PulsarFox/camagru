@@ -31,7 +31,7 @@ include_once("../config/database.php");
                     <br />
                     <br />
                     Voici un lien pour réinitialiser votre mot de passe:<br/>
-                    <a href="http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/reinit_pw.php?user='.$user.'&key='.$key.'">Réinitialisation</a>
+                    <a href="http://'.$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/".basename(dirname(getcwd(), 1)).'/reinit_pw.php?user='.urlencode($user).'&key='.$key.'">Réinitialisation</a>
                     </body>
                     </html>
                     ';

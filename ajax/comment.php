@@ -46,7 +46,7 @@ else if($_POST['pic_id'] && $_POST['username'] && $_POST['post'] && $_POST['user
                 <br />
                 <br />
                 Le commentaire suivant vient d\'être publié sur votre photo du '.date('d/m/y \à H\Hi', $time).' :<br/>
-                '.$comment.'
+                '.htmlspecialchars($comment).'
                 </body>
                 </html>
                 ';

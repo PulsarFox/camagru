@@ -21,7 +21,7 @@ if ($_POST['submit'] == "Confirmation" && $_POST['password'] && $_POST['confirm_
     {
         $pass = hash('whirlpool', $_POST['password']);
         $user = $_SESSION['username_tmp'];
-        echo $user." ".$pass;
+        $_SESSION['username_tmp'] = "";
         try
         {
             $db->beginTransaction();

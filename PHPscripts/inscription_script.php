@@ -97,8 +97,7 @@ if ($_POST['submit'] && $_POST['submit'] == "Confirmer" && $_POST['username'] &&
         $header .= iconv_mime_encode("Subject", $subject, $subj_pref);
         if (mail($mail, $subject, $message, $header) === TRUE)
         {
-            echo $message;
-            $_SESSION['inscription_error'] = "Mail bien envoy&eacute; !";
+            $_SESSION['inscription_error'] = "Un mail de confirmation vient d'être envoyé a l'adresse : ".htmlspecialchars($mail);
         }
         else
         {
